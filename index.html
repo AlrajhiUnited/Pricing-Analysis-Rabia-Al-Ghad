@@ -12,6 +12,7 @@
   :root{
     --gold:#bd9a5f;
     --gold-dark:#C89638;
+    --gold-light:#E8D9B8;
     --black:#000000;
     --grey:#EFEFEF;
     --white:#ffffff;
@@ -21,6 +22,12 @@
     --bg:#fafafa;
     --gray-dark:#374151;
     --gray-darker:#1f2937;
+    --pos: #0f9d58;
+    --pos-bg: rgba(15,157,88,0.1);
+    --warn: #B6781E;
+    --warn-bg: rgba(182,120,30,0.1);
+    --neg: #d93025;
+    --neg-bg: rgba(217,48,37,0.1);
     --shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.06);
     --shadow-lg:0 12px 24px rgba(0,0,0,0.08);
     --gold-grad:linear-gradient(135deg,#bd9a5f 0%,#C89638 100%);
@@ -58,11 +65,7 @@
     z-index:10;
     box-shadow:var(--shadow);
   }
-  .header__logo{
-    display:flex;
-    align-items:center;
-    height: 100%;
-  }
+  .header__logo{ display:flex; align-items:center; height: 100%; }
   .header__title{
     font-size:18px;font-weight:700;color:var(--black);
     text-align:center;letter-spacing:-0.2px;
@@ -71,10 +74,7 @@
     display:block;font-size:11px;color:var(--text-muted);
     font-weight:400;margin-top:2px;letter-spacing:0;
   }
-  .header__project{
-    display:flex;align-items:center;
-    height: 100%;
-  }
+  .header__project{ display:flex;align-items:center; height: 100%; }
 
   /* ===== SIDEBAR ===== */
   .sidebar{
@@ -94,40 +94,23 @@
   .nav{list-style:none;}
   .nav__item{
     display:flex;align-items:center;gap:14px;
-    padding:13px 24px;
+    padding:11px 24px;
     cursor:pointer;
-    font-size:14px;font-weight:500;
+    font-size:13.5px;font-weight:500;
     color:var(--text);
     transition:all 0.2s ease;
     position:relative;
     border-right:3px solid transparent;
   }
-  .nav__item:hover{
-    background:rgba(189,154,95,0.06);
-    color:var(--gold-dark);
-  }
+  .nav__item:hover{ background:rgba(189,154,95,0.06); color:var(--gold-dark); }
   .nav__item.active{
     background:rgba(189,154,95,0.1);
     color:var(--gold-dark);
     font-weight:700;
     border-right-color:var(--gold);
   }
-  .nav__item .icon{
-    width:18px;height:18px;
-    color:var(--gold);
-    flex-shrink:0;
-  }
+  .nav__item .icon{ width:18px;height:18px; color:var(--gold); flex-shrink:0; }
   .nav__item.active .icon{color:var(--gold-dark);}
-  .nav__sep{
-    height:1px;
-    background:var(--border);
-    margin:16px 24px;
-  }
-  .sidebar__footer{
-    padding:16px 24px;margin-top:auto;
-    font-size:11px;color:var(--text-muted);
-    border-top:1px solid var(--border);
-  }
 
   /* ===== MAIN ===== */
   .main{
@@ -138,10 +121,7 @@
   }
   .page{display:none;animation:fadeIn 0.35s ease;}
   .page.active{display:block;}
-  @keyframes fadeIn{
-    from{opacity:0;transform:translateY(8px);}
-    to{opacity:1;transform:translateY(0);}
-  }
+  @keyframes fadeIn{ from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
 
   .page__header{
     margin-bottom:24px;
@@ -156,22 +136,11 @@
     font-size:13px;color:var(--text-muted);
     margin-top:4px;font-weight:400;
   }
-  .page__badge{
-    background:var(--gold-grad);
-    color:white;
-    padding:6px 14px;
-    border-radius:4px; /* تصميم حاد ورسمي بدلاً من الدائري المبالغ فيه */
-    font-size:11.5px;
-    font-weight:700;
-    letter-spacing: 0.3px;
-    box-shadow:var(--shadow);
-    border: 1px solid rgba(0,0,0,0.05);
-  }
 
-  /* ===== KPI CARDS (Enhanced Dynamics) ===== */
+  /* ===== KPI CARDS ===== */
   .kpi-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
     gap:16px;
     margin-bottom:24px;
   }
@@ -183,351 +152,241 @@
     transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position:relative;
     overflow:hidden;
-    cursor:default;
   }
   .kpi::before{
-    content:"";
-    position:absolute;
-    top:0;right:0;
-    width:4px;height:100%;
-    background:var(--gold-grad);
-    opacity:0;
-    transform:scaleY(0);
-    transform-origin:bottom;
-    transition:all 0.3s ease;
+    content:""; position:absolute; top:0;right:0; width:4px;height:100%;
+    background:var(--gold-grad); opacity:0; transform:scaleY(0);
+    transform-origin:bottom; transition:all 0.3s ease;
   }
-  .kpi:hover{
-    transform:translateY(-6px) scale(1.02);
-    box-shadow:var(--shadow-lg);
-    border-color:rgba(189,154,95,0.4);
-  }
-  .kpi:hover::before{
-    opacity:1;
-    transform:scaleY(1);
-  }
-  .kpi__top{
-    display:flex;justify-content:space-between;align-items:center;
-    margin-bottom:14px;
-  }
-  .kpi__label{
-    font-size:12px;font-weight:600;
-    color:var(--text-muted);
-    letter-spacing:0.2px;
-  }
+  .kpi:hover{ transform:translateY(-6px) scale(1.02); box-shadow:var(--shadow-lg); border-color:rgba(189,154,95,0.4); }
+  .kpi:hover::before{ opacity:1; transform:scaleY(1); }
+  .kpi__top{ display:flex;justify-content:space-between;align-items:center; margin-bottom:14px; }
+  .kpi__label{ font-size:12px;font-weight:600; color:var(--text-muted); }
   .kpi__icon{
-    width:36px;height:36px;
-    background:rgba(189,154,95,0.08);
-    border-radius:8px;
-    display:flex;align-items:center;justify-content:center;
-    color:var(--gold);
+    width:36px;height:36px; background:rgba(189,154,95,0.08); border-radius:8px;
+    display:flex;align-items:center;justify-content:center; color:var(--gold);
     transition:all 0.3s ease;
   }
-  .kpi:hover .kpi__icon{
-    background:var(--gold);
-    color:var(--white);
-    transform:rotate(-5deg) scale(1.1);
-  }
+  .kpi:hover .kpi__icon{ background:var(--gold); color:var(--white); transform:rotate(-5deg) scale(1.1); }
   .kpi__icon svg{width:18px;height:18px;}
-  .kpi__value{
-    font-size:26px;font-weight:800;
-    color:var(--black);
-    letter-spacing:-0.5px;
-    line-height:1.1;
-  }
-  .kpi__value .unit{
-    font-size:13px;font-weight:500;
-    color:var(--text-muted);
-    margin-right:4px;
-  }
-  .kpi__sub{
-    font-size:11px;color:var(--text-muted);
-    margin-top:6px;font-weight:500;
-  }
-  .kpi__sub.up{color:#0f9d58;}
-  .kpi__sub.down{color:#d93025;}
+  .kpi__value{ font-size:26px;font-weight:800; color:var(--black); line-height:1.1; }
+  .kpi__value .unit{ font-size:13px;font-weight:500; color:var(--text-muted); margin-right:4px; }
+  .kpi__sub{ font-size:11.5px;color:var(--text-muted); margin-top:6px; font-weight:500; }
+  .kpi__sub.up{color:var(--pos);}
+  .kpi__sub.down{color:var(--neg);}
+  .kpi__sub.warn{color:var(--warn);}
 
-  /* ===== CARDS / PANELS ===== */
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-  .grid-2-1{display:grid;grid-template-columns:2fr 1fr;gap:20px;}
-  .grid-1-2{display:grid;grid-template-columns:1fr 2fr;gap:20px;}
-
+  /* ===== CARDS / GRIDS ===== */
+  .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px;}
+  .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+  .mt-20 { margin-top: 20px; }
+  
   .card{
-    background:var(--white);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:22px;
+    background:var(--white); border:1px solid var(--border);
+    border-radius:12px; padding:22px; margin-bottom:20px;
   }
   .card__header{
     display:flex;justify-content:space-between;align-items:center;
-    margin-bottom:18px;
-    padding-bottom:14px;
-    border-bottom:1px solid var(--border);
+    margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--border);
   }
-  .card__title{
-    font-size:15px;font-weight:700;
-    color:var(--black);
-  }
-  .card__title small{
-    display:block;font-size:11px;color:var(--text-muted);
-    font-weight:400;margin-top:2px;
-  }
-  .card__action{
-    font-size:11px;color:var(--gold-dark);
-    font-weight:600;
-  }
-  .chart-wrap{
-    position:relative;
-    height:280px;
-  }
+  .card__title{ font-size:15px;font-weight:700; color:var(--black); }
+  .card__title small{ display:block;font-size:11px;color:var(--text-muted); font-weight:400;margin-top:2px; }
+  .chart-wrap{ position:relative; width:100%; height:280px; }
   .chart-wrap.tall{height:340px;}
-  .chart-wrap.short{height:220px;}
 
-  /* ===== TABLES ===== */
-  .table-wrap{overflow-x:auto;max-height:340px;overflow-y:auto;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
+  /* ===== TABLES (Bulletproof Fix) ===== */
+  .table-wrap{
+    overflow-x:auto; 
+    width: 100%; 
+    border: 1px solid var(--border); 
+    border-radius: 8px; 
+    background: var(--white);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    -webkit-overflow-scrolling: touch;
+  }
+  table{
+    width: 100%; 
+    min-width: max-content; /* يمنع تكسر وتداخل الخلايا عند التصغير */
+    border-collapse: collapse; 
+    font-size: 13px; 
+    text-align: right;
+  }
   th{
-    background:var(--grey);
-    color:var(--black);
-    font-weight:700;
-    padding:10px 12px;
-    text-align:right;
-    font-size:12px;
-    position:sticky;top:0;
-    border-bottom:2px solid var(--gold);
-    z-index: 2;
+    background: var(--grey); 
+    color: var(--black); 
+    font-weight: 800;
+    padding: 14px 16px; 
+    font-size: 12.5px;
+    border-bottom: 2px solid var(--gold-dark); 
+    white-space: nowrap;
   }
-  td{
-    padding:10px 12px;
-    border-bottom:1px solid var(--border);
-    color:var(--text);
+  td{ 
+    padding: 14px 16px; 
+    border-bottom: 1px solid var(--border); 
+    color: var(--text); 
+    vertical-align: middle;
   }
-  tr:hover td{background:rgba(189,154,95,0.04);}
-  .badge{
-    display:inline-block;
-    padding:3px 10px;
-    border-radius:10px;
-    font-size:11px;font-weight:700;
-  }
-  .badge--gold{background:rgba(189,154,95,0.12);color:var(--gold-dark);}
-  .badge--dark{background:var(--gray-dark);color:white;}
-  .badge--soft{background:var(--grey);color:var(--text);}
-  .badge--up{background:rgba(15,157,88,0.1);color:#0f9d58;}
-  .badge--down{background:rgba(217,48,37,0.1);color:#d93025;}
-
-  /* ===== PROGRESS BARS ===== */
-  .progress{
-    height:6px;
-    background:var(--grey);
-    border-radius:3px;
-    overflow:hidden;
-    margin-top:8px;
-  }
-  .progress__bar{
-    height:100%;
-    background:var(--gold-grad);
-    border-radius:3px;
-    transition:width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  tbody tr:hover td{ background: rgba(189,154,95,0.04); }
+  tbody tr:last-child td { border-bottom: none; }
+  .total-row td { 
+    font-weight: 900; 
+    background: var(--grey); 
+    border-top: 2px solid var(--gold); 
+    border-bottom: none;
   }
 
-  /* ===== INSIGHT BOXES ===== */
-  .insight{
-    background:linear-gradient(135deg,rgba(189,154,95,0.06),rgba(200,150,56,0.03));
-    border-right:3px solid var(--gold);
-    padding:14px 18px;
-    border-radius:8px;
-    font-size:13px;
-    color:var(--text);
-    margin-top:14px;
-    line-height:1.7;
+  /* ===== NUMBERS & LTR ALIGNMENT FIX ===== */
+  .num-en {
+    font-feature-settings: "tnum";
+    direction: ltr;
+    unicode-bidi: isolate;
   }
-  .insight strong{color:var(--gold-dark);}
-  .insight--dark{
-    background:var(--gray-dark);
-    border-right-color:var(--gold);
-    color:#f3f4f6;
+  /* إذا تم تطبيق الكلاس على عنصر span يعرض كـ inline-block */
+  span.num-en {
+    display: inline-block;
   }
-  .insight--dark strong{color:var(--gold);}
+  /* إذا تم تطبيق الكلاس على خلية جدول يتم الحفاظ على المحاذاة لليمين */
+  td.num-en {
+    text-align: right;
+  }
 
-  /* ===== STAT ROWS ===== */
-  .stat-list{display:flex;flex-direction:column;gap:14px;}
-  .stat-row{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:10px 0;
-    border-bottom:1px dashed var(--border);
+  /* ===== BADGES ===== */
+  .badge{ display:inline-block; padding:4px 10px; border-radius:6px; font-size:11px;font-weight:700; }
+  .b-gold{background:rgba(189,154,95,0.12);color:var(--gold-dark);}
+  .b-pos{background:var(--pos-bg);color:var(--pos);}
+  .b-warn{background:var(--warn-bg);color:var(--warn);}
+  .b-neg{background:var(--neg-bg);color:var(--neg);}
+  .b-soft{background:var(--grey);color:var(--text-muted);}
+
+  /* ===== FINDINGS ===== */
+  .finding {
+    display: flex; gap: 14px; padding: 14px; border-radius: 8px;
+    margin-bottom: 10px; align-items: flex-start;
+    border: 1px solid var(--border); background: var(--white);
+    transition: all 0.2s;
   }
-  .stat-row:last-child{border-bottom:none;}
-  .stat-row__label{font-size:13px;color:var(--text-muted);font-weight:500;}
-  .stat-row__value{font-size:15px;font-weight:700;color:var(--black);}
+  .finding:hover { border-color: var(--gold); transform: translateX(-4px); }
+  .finding-ic {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: grid; place-items: center; flex-shrink: 0;
+    font-weight: 900; font-size: 14px;
+  }
+  .finding-ic.pos { background: var(--pos-bg); color: var(--pos); }
+  .finding-ic.warn { background: var(--warn-bg); color: var(--warn); }
+  .finding-ic.neg { background: var(--neg-bg); color: var(--neg); }
+  .finding-body { flex: 1; min-width: 0; }
+  .finding-title { font-size: 13.5px; font-weight: 700; color: var(--black); margin-bottom: 3px; }
+  .finding-text { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
 
   /* ===== PHASE CARDS ===== */
   .phase-card{
-    background:var(--white);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:20px;
+    background:var(--white); border:1px solid var(--border);
+    border-radius:12px; padding:20px; position:relative; overflow:hidden;
     transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position:relative;
-    overflow:hidden;
-    cursor:default;
   }
   .phase-card::before{
-    content:"";
-    position:absolute;
-    top:0;right:0;
-    width:100%;height:3px;
-    background:var(--gold-grad);
-    transform:scaleX(0);
-    transform-origin:right;
-    transition:transform 0.4s ease;
+    content:""; position:absolute; top:0;right:0; width:100%;height:3px;
+    background:var(--gold-grad); transform:scaleX(0); transform-origin:right; transition:transform 0.4s ease;
   }
-  .phase-card:hover{
-    transform:translateY(-6px) scale(1.02);
-    box-shadow:var(--shadow-lg);
-    border-color:rgba(189,154,95,0.4);
-  }
-  .phase-card:hover::before{
-    transform:scaleX(1);
-  }
-  .phase-card__num{
-    font-size:11px;color:var(--gold-dark);
-    font-weight:700;letter-spacing:1px;
-  }
-  .phase-card__title{
-    font-size:18px;font-weight:800;
-    color:var(--black);
-    margin:6px 0 14px;
-  }
+  .phase-card:hover{ transform:translateY(-6px) scale(1.02); box-shadow:var(--shadow-lg); border-color:rgba(189,154,95,0.4); }
+  .phase-card:hover::before{ transform:scaleX(1); }
+  .phase-card__num{ font-size:11px;color:var(--gold-dark); font-weight:700; letter-spacing:1px; }
+  .phase-card__title{ font-size:18px;font-weight:800; color:var(--black); margin:6px 0 14px; }
   .phase-card__row{
-    display:flex;justify-content:space-between;
-    padding:8px 0;
-    border-bottom:1px dashed var(--border);
-    font-size:12px;
+    display:flex;justify-content:space-between; padding:8px 0;
+    border-bottom:1px dashed var(--border); font-size:12.5px;
   }
   .phase-card__row:last-child{border-bottom:none;}
   .phase-card__row span:first-child{color:var(--text-muted);}
   .phase-card__row span:last-child{font-weight:700;color:var(--black);}
 
+  /* ===== SCENARIOS ===== */
+  .scenario {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px; border-top: 4px solid var(--gold);
+  }
+  .scenario-name { font-size: 11px; color: var(--gold-dark); font-weight: 700; margin-bottom: 4px; }
+  .scenario-title { font-size: 18px; font-weight: 900; color: var(--black); margin-bottom: 16px; }
+  .scenario-list { list-style: none; margin-bottom: 16px; }
+  .scenario-list li {
+    font-size: 12.5px; color: var(--text-muted); padding: 8px 0;
+    border-bottom: 1px dashed var(--border); display: flex; justify-content: space-between;
+  }
+  .scenario-list li:last-child { border-bottom: none; }
+  .scenario-list li strong { color: var(--black); font-weight: 700; }
+
+  /* ===== RISK MATRIX ===== */
+  .matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+  .matrix-cell {
+    padding: 16px 12px; border-radius: 8px; text-align: center;
+    font-size: 12.5px; border: 1px solid var(--border);
+  }
+  .matrix-cell.low { background: var(--pos-bg); color: var(--pos); border-color: #C8E5D2; }
+  .matrix-cell.med { background: var(--warn-bg); color: var(--warn); border-color: #F0DDB0; }
+  .matrix-cell.high { background: var(--neg-bg); color: var(--neg); border-color: #EFC7C7; }
+  .matrix-cell strong { display: block; font-size: 14px; font-weight: 900; margin-bottom: 4px; }
+
+  /* ===== RECOMMENDATIONS ===== */
+  .rec{
+    background:var(--white); border:1px solid var(--border);
+    border-right:4px solid var(--gold); border-radius:8px;
+    padding:18px; margin-bottom:12px; transition:all 0.3s ease;
+  }
+  .rec:hover{ transform:translateX(-6px); box-shadow:var(--shadow-lg); border-color:var(--gold-dark); }
+  .rec__head{ display:flex;justify-content:space-between;align-items:center; margin-bottom:10px; }
+  .rec__num{
+    width:32px;height:32px; background:var(--gold-grad); color:white;
+    border-radius:50%; display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:13px;
+  }
+  .rec__title{ font-size:14.5px;font-weight:700; color:var(--black); margin-bottom:6px; }
+  .rec__body{ font-size:13px;color:var(--text-muted); line-height:1.7; }
+
   /* ===== VERDICT ===== */
   .verdict{
     background: linear-gradient(145deg, var(--gray-dark) 0%, var(--gray-darker) 100%);
-    color:#f9fafb;
-    border-radius:16px;
-    padding:36px;
-    position:relative;
-    overflow:hidden;
+    color:#f9fafb; border-radius:16px; padding:36px; position:relative; overflow:hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.06);
   }
   .verdict::before{
-    content:"";
-    position:absolute;
-    top:-50%;left:-20%;
-    width:60%;height:200%;
-    background:radial-gradient(circle,rgba(189,154,95,0.15) 0%,transparent 70%);
-    pointer-events:none;
+    content:""; position:absolute; top:-50%;left:-20%; width:60%;height:200%;
+    background:radial-gradient(circle,rgba(189,154,95,0.15) 0%,transparent 70%); pointer-events:none;
   }
-  .verdict__label{
-    color:var(--gold);
-    font-size:12px;font-weight:700;
-    letter-spacing:2px;
-    margin-bottom:12px;
-  }
-  .verdict__title{
-    font-size:32px;font-weight:900;
-    margin-bottom:8px;
-    letter-spacing:-0.5px;
-    color: #ffffff;
-  }
-  .verdict__desc{
-    color:rgba(255,255,255,0.85);
-    font-size:14px;
-    line-height:1.8;
-    max-width:640px;
-  }
+  .verdict__label{ color:var(--gold); font-size:12px;font-weight:700; letter-spacing:1px; margin-bottom:12px; }
+  .verdict__title{ font-size:28px;font-weight:900; margin-bottom:12px; color: #ffffff; }
+  .verdict__desc{ color:rgba(255,255,255,0.85); font-size:14.5px; line-height:1.8; }
   .verdict__score{
-    display:flex;align-items:center;gap:24px;
-    margin-top:24px;
-    padding-top:24px;
+    display:flex;align-items:center;gap:24px; margin-top:24px; padding-top:24px;
     border-top:1px solid rgba(189,154,95,0.2);
   }
   .verdict__score-num{
-    font-size:64px;font-weight:900;
-    background:var(--gold-grad);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    line-height:1;
+    font-size:64px;font-weight:900; background:var(--gold-grad);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1;
   }
-  .verdict__score-label{
-    color:rgba(255,255,255,0.7);
-    font-size:12px;
+  .verdict__score-label{ color:rgba(255,255,255,0.7); font-size:12.5px; }
+  .verdict__score-label strong{ display:block;color:white;font-size:18px;font-weight:700;margin-bottom:2px; }
+  
+  .verdict-pillars {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin-top: 24px;
   }
-  .verdict__score-label strong{
-    display:block;color:white;font-size:18px;font-weight:700;margin-bottom:2px;
+  .verdict-pillar {
+    text-align: center; padding: 16px; background: rgba(255,255,255,0.05);
+    border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
   }
-
-  /* ===== RECOMMENDATION ITEMS ===== */
-  .rec{
-    background:var(--white);
-    border:1px solid var(--border);
-    border-right:4px solid var(--gold);
-    border-radius:8px;
-    padding:18px;
-    margin-bottom:12px;
-    transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: default;
-  }
-  .rec:hover{
-    transform:translateX(-6px) scale(1.01);
-    box-shadow:var(--shadow-lg);
-  }
-  .rec__head{
-    display:flex;justify-content:space-between;align-items:center;
-    margin-bottom:10px;
-  }
-  .rec__num{
-    width:28px;height:28px;
-    background:var(--gold-grad);
-    color:white;
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-weight:800;font-size:12px;
-  }
-  .rec__pri{font-size:10px;font-weight:700;letter-spacing:1px;}
-  .rec__pri.high{color:#d93025;}
-  .rec__pri.med{color:var(--gold-dark);}
-  .rec__pri.low{color:#0f9d58;}
-  .rec__title{
-    font-size:14px;font-weight:700;
-    color:var(--black);
-    margin-bottom:6px;
-  }
-  .rec__body{
-    font-size:13px;color:var(--text-muted);
-    line-height:1.7;
-  }
-  .rec__body strong{color:var(--black);}
-  .rec__meta{
-    display:flex;gap:8px;margin-top:10px;
-  }
-
-  /* ===== UTIL ===== */
-  .num-en{font-feature-settings:"tnum";direction:ltr;display:inline-block;}
-  .scrollable{overflow-y:auto;max-height:calc(100vh - 220px);}
-  .mb-0{margin-bottom:0;}
-  .mt-12{margin-top:12px;}
-  .mt-20{margin-top:20px;}
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar{width:8px;height:8px;}
-  ::-webkit-scrollbar-track{background:transparent;}
-  ::-webkit-scrollbar-thumb{background:#d4d4d4;border-radius:4px;}
-  ::-webkit-scrollbar-thumb:hover{background:var(--gold);}
+  .pillar-label { font-size: 11.5px; color: rgba(255,255,255,0.7); font-weight: 600; margin-bottom: 6px; }
+  .pillar-value { font-size: 20px; font-weight: 900; color: #fff; }
 
   /* Responsive */
-  @media (max-width:1024px){
-    .app{grid-template-columns:200px 1fr;}
-    .grid-2,.grid-2-1,.grid-1-2{grid-template-columns:1fr;}
-    .grid-3{grid-template-columns:1fr 1fr;}
+  @media (max-width:920px){
+    .app{grid-template-columns:1fr; grid-template-rows: auto auto 1fr; grid-template-areas: "header" "sidebar" "main";}
+    .sidebar{ display: flex; overflow-x: auto; padding: 10px; border-left: none; border-bottom: 1px solid var(--border); }
+    .sidebar__heading, .nav__sep { display: none; }
+    .nav { display: flex; }
+    .nav__item { white-space: nowrap; border-right: none; border-bottom: 3px solid transparent; padding: 10px; }
+    .nav__item.active { border-right: none; border-bottom-color: var(--gold); }
+    .header { padding: 16px; }
+    .header__logo img, .header__project img { height: 36px !important; }
   }
 </style>
 </head>
@@ -537,14 +396,14 @@
   <!-- ============== HEADER ============== -->
   <header class="header">
     <div class="header__logo">
-      <img src="Alrajhi Logo Presentation.png" alt="اتحاد الراجحي" style="height: 48px; object-fit: contain;">
+      <img src="Alrajhi Logo Presentation.png" alt="اتحاد الراجحي" style="height: 48px; object-fit: contain;" onerror="this.style.display='none';this.insertAdjacentHTML('afterend', '<div style=\'font-weight:900;color:var(--gold-dark)\'>اتحاد الراجحي</div>')">
     </div>
     <div class="header__title">
-      تحليل تسعير مخطط رابية الغد
-      <small>ملخص دراسة التسعير · أبها · 108 قطعة · 19 أبريل 2026</small>
+      تحليل تسعير وخطة مبيعات مخطط رابية الغد
+      <small>لوحة قرار استثماري متكاملة • 108 قطعة • أبها</small>
     </div>
     <div class="header__project">
-      <img src="Rabiat AlGhad Logo.png" alt="رابية الغد" style="height: 48px; object-fit: contain;">
+      <img src="Rabiat AlGhad Logo.png" alt="رابية الغد" style="height: 48px; object-fit: contain;" onerror="this.style.display='none';this.insertAdjacentHTML('afterend', '<div style=\'font-weight:900;color:var(--text)\'>رابية الغد</div>')">
     </div>
   </header>
 
@@ -552,7 +411,7 @@
   <aside class="sidebar">
     <div class="sidebar__heading">أقسام التقرير</div>
     <ul class="nav">
-      <li class="nav__item active" data-page="summary">
+      <li class="nav__item active" data-page="executive">
         <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
         الملخص التنفيذي
       </li>
@@ -572,9 +431,21 @@
         <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
         تحليل المراحل
       </li>
-      <li class="nav__item" data-page="outliers">
+      <li class="nav__item" data-page="velocity">
+        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        سرعة البيع
+      </li>
+      <li class="nav__item" data-page="cashflow">
+        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        التدفق النقدي
+      </li>
+      <li class="nav__item" data-page="risk">
         <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-        القيم الشاذة
+        تحليل المخاطر
+      </li>
+      <li class="nav__item" data-page="scenarios">
+        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        السيناريوهات
       </li>
       <li class="nav__item" data-page="recommendations">
         <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
@@ -585,511 +456,1156 @@
         الحكم النهائي
       </li>
     </ul>
-    <div class="nav__sep"></div>
-    <div class="sidebar__footer">
-      <div style="font-weight:700;color:var(--black);margin-bottom:4px;">المصادر</div>
-      ملف التسعير المعتمد · تقرير الدراسة الميدانية (فبراير 2026) · خطة المبيعات المعتمدة (أبريل 2026)
-    </div>
   </aside>
 
   <!-- ============== MAIN ============== -->
   <main class="main">
 
-    <!-- ===== PAGE: SUMMARY ===== -->
-    <section class="page active" id="page-summary">
+    <!-- ================================================== -->
+    <!-- 1. الملخص التنفيذي -->
+    <!-- ================================================== -->
+    <section class="page active" id="page-executive">
       <div class="page__header">
         <div>
           <h1 class="page__title">الملخص التنفيذي</h1>
-          <p class="page__subtitle">صورة قرار شاملة لتسعير مخطط رابية الغد · 108 قطعة · 3 مراحل بيعية · 12 شهراً</p>
+          <p class="page__subtitle">قراءة سريعة في 60 ثانية لأبرز نتائج تحليل التسعير والسوق وخطة المبيعات</p>
         </div>
-        <div class="page__badge">للاعتماد النهائي</div>
       </div>
 
-      <!-- KPI Strip -->
       <div class="kpi-grid">
         <div class="kpi">
           <div class="kpi__top">
-            <span class="kpi__label">إجمالي قيمة المخطط</span>
+            <span class="kpi__label">إجمالي القيمة المستهدفة</span>
             <div class="kpi__icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V7m0 9v1m6-5a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
           </div>
-          <div class="kpi__value"><span class="num-en">87.6</span><span class="unit">مليون ر.س</span></div>
-          <div class="kpi__sub">قيمة معلنة شاملة 108 قطعة</div>
+          <div class="kpi__value"><span class="num-en" data-counter="87.6">0</span><span class="unit">M</span></div>
+          <div class="kpi__sub">ريال سعودي</div>
         </div>
         <div class="kpi">
           <div class="kpi__top">
-            <span class="kpi__label">متوسط سعر المتر</span>
-            <div class="kpi__icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div>
-          </div>
-          <div class="kpi__value"><span class="num-en">1,255</span><span class="unit">ر.س / م²</span></div>
-          <div class="kpi__sub">المتوسط المرجح بالمساحة</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi__top">
-            <span class="kpi__label">إجمالي المساحات</span>
+            <span class="kpi__label">عدد القطع</span>
             <div class="kpi__icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg></div>
           </div>
-          <div class="kpi__value"><span class="num-en">69,816</span><span class="unit">م²</span></div>
-          <div class="kpi__sub">82 سكنية + 26 تجارية</div>
+          <div class="kpi__value"><span class="num-en" data-counter="108">0</span></div>
+          <div class="kpi__sub">82 سكني • 26 تجاري</div>
         </div>
         <div class="kpi">
           <div class="kpi__top">
-            <span class="kpi__label">الفجوة عن السوق</span>
+            <span class="kpi__label">المدة المخططة</span>
+            <div class="kpi__icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+          </div>
+          <div class="kpi__value"><span class="num-en">12</span><span class="unit">شهر</span></div>
+          <div class="kpi__sub">3 مراحل بيعية</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top">
+            <span class="kpi__label">معدل البيع المطلوب</span>
             <div class="kpi__icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
           </div>
-          <div class="kpi__value"><span class="num-en">+2.0%</span></div>
-          <div class="kpi__sub down">سكني فوق متوسط السوق المجاور</div>
+          <div class="kpi__value"><span class="num-en">9</span><span class="unit">قطعة/شهر</span></div>
+          <div class="kpi__sub warn">▲ +80% من المعيار السوقي</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top">
+            <span class="kpi__label">التقييم الإجمالي</span>
+            <div class="kpi__icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+          </div>
+          <div class="kpi__value" style="color:var(--gold-dark)"><span class="num-en">71</span><span class="unit">/ 100</span></div>
+          <div class="kpi__sub">يحتاج تعديل محدود</div>
         </div>
       </div>
 
-      <div class="grid-2-1">
+      <div class="grid-2">
         <div class="card">
-          <div class="card__header">
-            <div class="card__title">توزيع القيمة بين الاستخدامات
-              <small>السكني هو محرك القيمة الرئيسي بنسبة 70% من الإيرادات</small>
+          <div class="card__header"><div class="card__title">أبرز المكاسب</div></div>
+          <div class="finding">
+            <div class="finding-ic pos">✓</div>
+            <div class="finding-body">
+              <div class="finding-title">تباين سعري منخفض جداً (4.04%)</div>
+              <div class="finding-text">جودة عالية في تسعير القطع السكنية، مما يعكس تطبيقاً منهجياً لمعايير الضبط النسبي على 82 قطعة سكنية.</div>
             </div>
           </div>
-          <div class="chart-wrap"><canvas id="chartUsageMix"></canvas></div>
+          <div class="finding">
+            <div class="finding-ic pos">✓</div>
+            <div class="finding-body">
+              <div class="finding-title">السعر التجاري مدعوم بالموقع</div>
+              <div class="finding-text">قطع طريق الملك عبدالله بـ <span class="num-en">1,500</span> ريال/م² تتوافق مع تسعير السوق المرجعي وتحقق هامشاً تجارياً قوياً.</div>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="finding-ic pos">✓</div>
+            <div class="finding-body">
+              <div class="finding-title">اتجاه السوق صاعد</div>
+              <div class="finding-text">السعر المنفذ في حي العقيق ارتفع من <span class="num-en">1,050</span> (Q1 2025) إلى <span class="num-en">1,280</span> (Q4 2025) — نمو سنوي 22% يدعم التسعير المستهدف.</div>
+            </div>
+          </div>
         </div>
 
         <div class="card">
-          <div class="card__header">
-            <div class="card__title">رؤية تنفيذية</div>
-          </div>
-          <div class="stat-list">
-            <div class="stat-row">
-              <span class="stat-row__label">القطع السكنية</span>
-              <span class="stat-row__value"><span class="num-en">82</span> قطعة (76%)</span>
-            </div>
-            <div class="stat-row">
-              <span class="stat-row__label">القطع التجارية</span>
-              <span class="stat-row__value"><span class="num-en">26</span> قطعة (24%)</span>
-            </div>
-            <div class="stat-row">
-              <span class="stat-row__label">مدة البيع المخططة</span>
-              <span class="stat-row__value"><span class="num-en">12</span> شهراً</span>
-            </div>
-            <div class="stat-row">
-              <span class="stat-row__label">الإيراد التجاري المؤجل</span>
-              <span class="stat-row__value"><span class="num-en">15.5</span>م ر.س</span>
+          <div class="card__header"><div class="card__title">أبرز التحفظات</div></div>
+          <div class="finding">
+            <div class="finding-ic warn">!</div>
+            <div class="finding-body">
+              <div class="finding-title">السكني المستهدف يتجاوز الصفقات بـ 6.8%</div>
+              <div class="finding-text">المتوسط المرجح <span class="num-en">1,209</span> ريال/م² مقابل <span class="num-en">1,132</span> ريال للصفقات المنفذة فعلياً — قد يبطئ البيع في المرحلة الأولى.</div>
             </div>
           </div>
-          <div class="insight">
-            <strong>الخلاصة:</strong> التسعير معايرة فنيّة ممتازة بمعامل تباين منخفض، لكنه يحمل مخاطر منافسة في الشريحة السكنية حيث يتجاوز السعر المعدل المُوصى به من الدراسة الميدانية.
+          <div class="finding">
+            <div class="finding-ic warn">!</div>
+            <div class="finding-body">
+              <div class="finding-title">معدل بيع طموح: 9 قطع/شهر</div>
+              <div class="finding-text">المخطط المنافس (آل مانع) باع 15 قطعة في 3 أشهر فقط (5/شهر). الخطة تفترض ضعف هذا المعدل تقريباً.</div>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="finding-ic neg">×</div>
+            <div class="finding-body">
+              <div class="finding-title">المرحلة 2 تحمل 46% من القطع في 6 أشهر</div>
+              <div class="finding-text">تركيز التسييل في الوسط يخلق فجوة سيولة محتملة إذا تأخر بيع المرحلة 1 أو ضعف الطلب في الصيف.</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="grid-3 mt-20">
-        <div class="card">
-          <div class="card__header"><div class="card__title">المرحلة الأولى<small>الإطلاق وبناء الزخم</small></div></div>
-          <div class="kpi__value" style="font-size:22px;"><span class="num-en">24.6</span><span class="unit">م ر.س</span></div>
-          <div class="progress"><div class="progress__bar" style="width:28.3%;"></div></div>
-          <div class="kpi__sub mt-12">35 قطعة · 28.3% من إجمالي القيمة · 3 أشهر</div>
-        </div>
-        <div class="card">
-          <div class="card__header"><div class="card__title">المرحلة الثانية<small>تسييل الثقل الأكبر</small></div></div>
-          <div class="kpi__value" style="font-size:22px;"><span class="num-en">38.2</span><span class="unit">م ر.س</span></div>
-          <div class="progress"><div class="progress__bar" style="width:43.9%;"></div></div>
-          <div class="kpi__sub mt-12">50 قطعة · 43.9% من إجمالي القيمة · 6 أشهر</div>
-        </div>
-        <div class="card">
-          <div class="card__header"><div class="card__title">المرحلة الثالثة<small>التجاري المميّز</small></div></div>
-          <div class="kpi__value" style="font-size:22px;"><span class="num-en">24.2</span><span class="unit">م ر.س</span></div>
-          <div class="progress"><div class="progress__bar" style="width:27.8%;"></div></div>
-          <div class="kpi__sub mt-12">23 قطعة · 27.8% من إجمالي القيمة · 3 أشهر</div>
+      <div class="card">
+        <div class="card__header"><div class="card__title">المعادلة الحاكمة للقرار</div></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr) auto repeat(2,1fr);gap:12px;align-items:center;text-align:center;padding:1rem 0;">
+          <div>
+            <div style="font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:6px;">السعر</div>
+            <div style="font-size:28px;font-weight:900;color:var(--gold-dark);"><span class="num-en">7.5</span></div>
+            <div style="font-size:12px;color:var(--text-muted);">/ 10</div>
+          </div>
+          <div style="font-size:24px;color:var(--gold);font-weight:900;">×</div>
+          <div>
+            <div style="font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:6px;">السوق</div>
+            <div style="font-size:28px;font-weight:900;color:var(--gold-dark);"><span class="num-en">7.0</span></div>
+            <div style="font-size:12px;color:var(--text-muted);">/ 10</div>
+          </div>
+          <div style="font-size:24px;color:var(--gold);font-weight:900;">×</div>
+          <div>
+            <div style="font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:6px;">التوقيت</div>
+            <div style="font-size:28px;font-weight:900;color:var(--gold-dark);"><span class="num-en">6.5</span></div>
+            <div style="font-size:12px;color:var(--text-muted);">/ 10</div>
+          </div>
+          <div style="font-size:24px;color:var(--gold);font-weight:900;">=</div>
+          <div>
+            <div style="font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:6px;">القرار</div>
+            <div style="font-size:28px;font-weight:900;color:var(--gold-dark);"><span class="num-en">71%</span></div>
+            <div style="font-size:12px;color:var(--text-muted);">قابل للتنفيذ بتعديلات</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== PAGE: KPIs ===== -->
+    <!-- ================================================== -->
+    <!-- 2. المؤشرات الرئيسية -->
+    <!-- ================================================== -->
     <section class="page" id="page-kpis">
       <div class="page__header">
         <div>
           <h1 class="page__title">المؤشرات الرئيسية</h1>
-          <p class="page__subtitle">قراءة كميّة لأداء التسعير وقابلية البيع</p>
+          <p class="page__subtitle">لوحة شاملة لجميع مؤشرات الأداء المالية والتشغيلية</p>
         </div>
       </div>
 
+      <h3 style="font-size:13px;color:var(--text-muted);font-weight:700;letter-spacing:0.05em;margin-bottom:14px;">المؤشرات المالية</h3>
       <div class="kpi-grid">
         <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">متوسط سعر المتر (مرجّح)</span></div>
-          <div class="kpi__value"><span class="num-en">1,255</span><span class="unit">ر.س</span></div>
-          <div class="kpi__sub">سكني <span class="num-en">1,213</span> · تجاري <span class="num-en">1,376</span></div>
+          <div class="kpi__top"><span class="kpi__label">متوسط سعر متر السكني</span></div>
+          <div class="kpi__value"><span class="num-en">1,209</span></div>
+          <div class="kpi__sub">ريال/م² (مرجح بالمساحة)</div>
         </div>
         <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">أعلى سعر متر</span></div>
-          <div class="kpi__value"><span class="num-en">1,668</span><span class="unit">ر.س</span></div>
-          <div class="kpi__sub">قطعة 1 - تجاري طريق الملك عبدالله</div>
+          <div class="kpi__top"><span class="kpi__label">متوسط سعر متر التجاري</span></div>
+          <div class="kpi__value"><span class="num-en">1,379</span></div>
+          <div class="kpi__sub">ريال/م² (مرجح بالمساحة)</div>
         </div>
         <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">أدنى سعر متر</span></div>
-          <div class="kpi__value"><span class="num-en">1,020</span><span class="unit">ر.س</span></div>
-          <div class="kpi__sub">قطعة 108 - سكني (شذوذ سلبي)</div>
+          <div class="kpi__top"><span class="kpi__label">معامل التباين (السكني)</span></div>
+          <div class="kpi__value" style="color:var(--gold-dark)"><span class="num-en">4.04</span><span class="unit">%</span></div>
+          <div class="kpi__sub up">منخفض ✓ جودة عالية</div>
         </div>
         <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">معامل التباين (CV)</span></div>
-          <div class="kpi__value"><span class="num-en">7.8</span><span class="unit">%</span></div>
-          <div class="kpi__sub up">انضباط ممتاز في التسعير</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">القيم الشاذة</span></div>
-          <div class="kpi__value"><span class="num-en">12</span><span class="unit">قطعة</span></div>
-          <div class="kpi__sub">11% من إجمالي القطع</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">تقييم السوق</span></div>
-          <div class="kpi__value" style="color:var(--gold-dark);font-size:22px;">مناسب - مرتفع نسبياً</div>
-          <div class="kpi__sub">يقع فوق منتصف نطاق السوق</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">سرعة البيع المتوقعة</span></div>
-          <div class="kpi__value" style="font-size:22px;">متوسطة</div>
-          <div class="kpi__sub">9-12 شهراً وفق المخطط الزمني</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">القيمة المضافة الإجمالية</span></div>
-          <div class="kpi__value"><span class="num-en">+1.37</span><span class="unit">م ر.س</span></div>
-          <div class="kpi__sub">صافي مزايا الموقع والمواصفات</div>
+          <div class="kpi__top"><span class="kpi__label">فجوة السعر عن السوق</span></div>
+          <div class="kpi__value"><span class="num-en">+6.8</span><span class="unit">%</span></div>
+          <div class="kpi__sub warn">▲ أعلى من الصفقات المنفذة</div>
         </div>
       </div>
 
-      <div class="grid-2 mt-20">
-        <div class="card">
-          <div class="card__header"><div class="card__title">توزيع أسعار المتر للقطع السكنية<small>82 قطعة سكنية</small></div></div>
-          <div class="chart-wrap"><canvas id="chartResHist"></canvas></div>
+      <h3 style="font-size:13px;color:var(--text-muted);font-weight:700;letter-spacing:0.05em;margin:24px 0 14px;">المؤشرات التشغيلية</h3>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">المرحلة 1 - معدل بيع</span></div>
+          <div class="kpi__value"><span class="num-en">11.7</span></div>
+          <div class="kpi__sub">قطعة/شهر (معدل أولي)</div>
         </div>
-        <div class="card">
-          <div class="card__header"><div class="card__title">توزيع أسعار المتر للقطع التجارية<small>26 قطعة تجارية</small></div></div>
-          <div class="chart-wrap"><canvas id="chartComHist"></canvas></div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">نسبة الإنجاز خلال 6 أشهر</span></div>
+          <div class="kpi__value"><span class="num-en">52</span><span class="unit">%</span></div>
+          <div class="kpi__sub">من إجمالي 108 قطعة</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">القيمة البيعية للسكني</span></div>
+          <div class="kpi__value"><span class="num-en">61.4</span><span class="unit">M</span></div>
+          <div class="kpi__sub">ريال • 70% من الإجمالي</div>
         </div>
       </div>
     </section>
 
-    <!-- ===== PAGE: PRICING ===== -->
+    <!-- ================================================== -->
+    <!-- 3. تحليل التسعير -->
+    <!-- ================================================== -->
     <section class="page" id="page-pricing">
       <div class="page__header">
         <div>
           <h1 class="page__title">تحليل التسعير</h1>
-          <p class="page__subtitle">العلاقة بين المساحة والسعر · توزيع المزايا · انتظام التسعير</p>
+          <p class="page__subtitle">فحص جودة التسعير: التماسك، التباين، القيم الشاذة، والعلاقة بالمساحة والموقع</p>
         </div>
       </div>
 
       <div class="kpi-grid">
-        <div class="kpi"><div class="kpi__top"><span class="kpi__label">السعر المعياري السكني</span></div><div class="kpi__value"><span class="num-en">1,150</span><span class="unit">ر.س</span></div></div>
-        <div class="kpi"><div class="kpi__top"><span class="kpi__label">السعر المعياري التجاري</span></div><div class="kpi__value"><span class="num-en">1,250</span><span class="unit">ر.س</span></div></div>
-        <div class="kpi"><div class="kpi__top"><span class="kpi__label">سعر تجاري طريق الملك عبدالله</span></div><div class="kpi__value"><span class="num-en">1,500</span><span class="unit">ر.س</span></div></div>
-        <div class="kpi"><div class="kpi__top"><span class="kpi__label">صافي القيمة المضافة</span></div><div class="kpi__value"><span class="num-en">+1.6%</span></div><div class="kpi__sub">على إجمالي القيمة المعيارية</div></div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">السعر الأساسي السكني</span></div>
+          <div class="kpi__value"><span class="num-en">1,150</span></div>
+          <div class="kpi__sub">ريال/م² (قبل المعايير)</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">السعر الأساسي التجاري</span></div>
+          <div class="kpi__value"><span class="num-en">1,250</span></div>
+          <div class="kpi__sub">ريال/م² (داخلي)</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">سعر التجاري الواجهة</span></div>
+          <div class="kpi__value" style="color:var(--gold-dark)"><span class="num-en">1,500</span></div>
+          <div class="kpi__sub">ريال/م² (طريق الملك عبدالله)</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">القيم الشاذة المكتشفة</span></div>
+          <div class="kpi__value"><span class="num-en">10</span><span class="unit">قطع</span></div>
+          <div class="kpi__sub">9 سكني + 1 تجاري</div>
+        </div>
       </div>
 
-      <div class="grid-2 mt-20">
+      <div class="grid-2">
         <div class="card">
-          <div class="card__header"><div class="card__title">المساحة مقابل السعر<small>كل نقطة تمثل قطعة · لون ذهبي = سكني · أسود = تجاري</small></div></div>
-          <div class="chart-wrap tall"><canvas id="chartScatter"></canvas></div>
+          <div class="card__header"><div class="card__title">توزيع سعر المتر للقطع السكنية<small>المتوسط 1,213 ريال — الانحراف المعياري 49 — التباين 4.04%</small></div></div>
+          <div class="chart-wrap"><canvas id="priceDistRes"></canvas></div>
         </div>
         <div class="card">
-          <div class="card__header"><div class="card__title">المزايا المضافة لكل قطعة<small>توزيع الميزات الإضافية على إجمالي القطع</small></div></div>
-          <div class="chart-wrap tall"><canvas id="chartFeatures"></canvas></div>
+          <div class="card__header"><div class="card__title">توزيع سعر المتر للقطع التجارية<small>المتوسط 1,376 ريال — التباين 8.13% — تأثير الواجهة واضح</small></div></div>
+          <div class="chart-wrap"><canvas id="priceDistCom"></canvas></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">العلاقة بين المساحة وسعر المتر<small>القطع الأكبر تحصل على خصم منهجي (-5% للقطع &gt; 700 م²) — منطق سليم</small></div></div>
+        <div class="chart-wrap tall"><canvas id="priceVsArea"></canvas></div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">شرائح التسعير حسب المساحة (السكني)</div></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>الشريحة (م²)</th>
+                <th>عدد القطع</th>
+                <th>متوسط سعر المتر</th>
+                <th>إجمالي القيمة</th>
+                <th>التقييم</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>أقل من 500</td><td class="num-en">7</td><td class="num-en">1,265</td><td class="num-en">4,228,516</td><td><span class="badge b-pos">سعر مرتفع مبرر</span></td></tr>
+              <tr><td>500 - 600</td><td class="num-en">28</td><td class="num-en">1,219</td><td class="num-en">18,984,580</td><td><span class="badge b-pos">متوازن</span></td></tr>
+              <tr><td>600 - 700</td><td class="num-en">31</td><td class="num-en">1,217</td><td class="num-en">23,470,550</td><td><span class="badge b-pos">متوازن</span></td></tr>
+              <tr><td>700 - 800</td><td class="num-en">11</td><td class="num-en">1,174</td><td class="num-en">9,608,091</td><td><span class="badge b-warn">خصم منطقي للحجم</span></td></tr>
+              <tr><td>أكبر من 800</td><td class="num-en">5</td><td class="num-en">1,163</td><td class="num-en">5,117,816</td><td><span class="badge b-warn">قد يحتاج مرونة بيع</span></td></tr>
+              <tr class="total-row"><td>الإجمالي السكني</td><td class="num-en">82</td><td class="num-en">1,209</td><td class="num-en">61,409,549</td><td><span class="badge b-gold">مرجح بالمساحة</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">القيم الشاذة المكتشفة (Outliers)<small>قطع خرجت عن النطاق الطبيعي [Q1 - 1.5×IQR, Q3 + 1.5×IQR] — تستحق مراجعة فردية</small></div></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>رقم القطعة</th>
+                <th>التصنيف</th>
+                <th>المساحة</th>
+                <th>سعر المتر</th>
+                <th>التشخيص</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="num-en">91</td><td>سكني</td><td class="num-en">504</td><td class="num-en">1,314</td><td><span class="badge b-warn">أعلى الشريحة — قطعة صغيرة بمزايا</span></td></tr>
+              <tr><td class="num-en">39</td><td>سكني</td><td class="num-en">433</td><td class="num-en">1,297</td><td><span class="badge b-warn">قطعة صغيرة جداً مع مزايا متعددة</span></td></tr>
+              <tr><td class="num-en">108</td><td>سكني</td><td class="num-en">802</td><td class="num-en">1,020</td><td><span class="badge b-neg">الأقل سعراً — مراجعة الموقع مطلوبة</span></td></tr>
+              <tr><td class="num-en">106</td><td>سكني</td><td class="num-en">552</td><td class="num-en">1,067</td><td><span class="badge b-neg">سعر منخفض رغم المساحة المتوسطة</span></td></tr>
+              <tr><td class="num-en">1</td><td>تجاري</td><td class="num-en">692</td><td class="num-en">1,668</td><td><span class="badge b-pos">قطعة الزاوية على الواجهة الرئيسية ✓</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card__header"><div class="card__title">التشخيص النهائي للتسعير</div></div>
+          <div class="finding">
+            <div class="finding-ic pos">✓</div>
+            <div class="finding-body">
+              <div class="finding-title">منهجية تسعير صحية</div>
+              <div class="finding-text">معامل تباين 4% يدل على اتساق ممتاز. التدرج بين الشرائح منطقي ويعكس قواعد سوقية مدروسة.</div>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="finding-ic pos">✓</div>
+            <div class="finding-body">
+              <div class="finding-title">التمييز التجاري سليم</div>
+              <div class="finding-text">فرق <span class="num-en">200</span> ريال بين تجاري الواجهة (<span class="num-en">1,500</span>) والداخلي (<span class="num-en">1,250</span>) يعكس قراءة دقيقة لقيمة الموقع.</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">نقاط تستحق المراجعة</div></div>
+          <div class="finding">
+            <div class="finding-ic warn">!</div>
+            <div class="finding-body">
+              <div class="finding-title">10 قطع تتطلب مراجعة فردية</div>
+              <div class="finding-text">القطع الشاذة (خاصة رقم <span class="num-en">108</span> و <span class="num-en">106</span>) قد تشير إلى تحديات موقعية لم تُسعّر بشكل كافٍ — مراجعة ميدانية موصى بها.</div>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="finding-ic warn">!</div>
+            <div class="finding-body">
+              <div class="finding-title">القطع &gt; 800 م² تحتاج مرونة</div>
+              <div class="finding-text">5 قطع كبيرة بقيمة ~<span class="num-en">5.1M</span> ريال — يفضل تخصيصها للمرحلة 3 وإعطاؤها مرونة تفاوضية أكبر.</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== PAGE: MARKET ===== -->
+    <!-- ================================================== -->
+    <!-- 4. التحليل السوقي -->
+    <!-- ================================================== -->
     <section class="page" id="page-market">
       <div class="page__header">
         <div>
           <h1 class="page__title">التحليل السوقي</h1>
-          <p class="page__subtitle">مقارنة مع أسعار العرض والصفقات المنفذة في المخططات المجاورة وحي العقيق</p>
+          <p class="page__subtitle">ربط أسعار المخطط بالواقع السوقي في أبها — المخططات المنافسة والصفقات المنفذة</p>
         </div>
       </div>
 
       <div class="kpi-grid">
         <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">متوسط السوق - عروض</span></div>
-          <div class="kpi__value"><span class="num-en">1,189</span><span class="unit">ر.س</span></div>
-          <div class="kpi__sub">آل مانع · الفيروز · نسمات</div>
+          <div class="kpi__top"><span class="kpi__label">متوسط الصفقات المنفذة</span></div>
+          <div class="kpi__value"><span class="num-en">1,132</span></div>
+          <div class="kpi__sub">ريال/م² (حي العقيق 2025)</div>
         </div>
         <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">متوسط الصفقات المنفّذة</span></div>
-          <div class="kpi__value"><span class="num-en">1,132</span><span class="unit">ر.س</span></div>
-          <div class="kpi__sub">حي العقيق - 12 صفقة 2025</div>
+          <div class="kpi__top"><span class="kpi__label">متوسط العرض المنافس</span></div>
+          <div class="kpi__value"><span class="num-en">1,200</span></div>
+          <div class="kpi__sub">ريال/م² (آل مانع، نسمات)</div>
         </div>
         <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">متوسط رابية الغد - سكني</span></div>
-          <div class="kpi__value"><span class="num-en">1,213</span><span class="unit">ر.س</span></div>
-          <div class="kpi__sub down">+7.2% فوق الصفقات المنفذة</div>
+          <div class="kpi__top"><span class="kpi__label">سقف السوق (سكني)</span></div>
+          <div class="kpi__value"><span class="num-en">1,280</span></div>
+          <div class="kpi__sub">ريال/م² (Q4 2025)</div>
         </div>
         <div class="kpi">
-          <div class="kpi__top"><span class="kpi__label">السعر التنافسي المُوصى</span></div>
-          <div class="kpi__value"><span class="num-en">1,050-1,100</span></div>
-          <div class="kpi__sub">من تقرير الدراسة الميدانية</div>
+          <div class="kpi__top"><span class="kpi__label">نمو الأسعار السنوي</span></div>
+          <div class="kpi__value" style="color:var(--gold-dark)"><span class="num-en">+22</span><span class="unit">%</span></div>
+          <div class="kpi__sub up">▲ مسار صاعد قوي</div>
         </div>
       </div>
 
-      <div class="grid-2 mt-20">
+      <div class="grid-2">
         <div class="card">
-          <div class="card__header"><div class="card__title">رابية الغد مقابل المخططات المجاورة<small>متوسط سعر المتر السكني (ر.س)</small></div></div>
-          <div class="chart-wrap"><canvas id="chartMarketComp"></canvas></div>
+          <div class="card__header"><div class="card__title">مقارنة الأسعار: المخطط مقابل المنافسين</div></div>
+          <div class="chart-wrap"><canvas id="marketCompare"></canvas></div>
         </div>
         <div class="card">
-          <div class="card__header"><div class="card__title">تطور أسعار صفقات حي العقيق 2025<small>متوسط سعر المتر للسكني المنفّذ</small></div></div>
-          <div class="chart-wrap"><canvas id="chartTrend"></canvas></div>
+          <div class="card__header"><div class="card__title">تطور أسعار الصفقات في حي العقيق 2025</div></div>
+          <div class="chart-wrap"><canvas id="marketTrend"></canvas></div>
         </div>
       </div>
 
-      <div class="card mt-20">
-        <div class="card__header"><div class="card__title">جدول المقارنة التفصيلي مع المخططات المجاورة</div></div>
+      <div class="card">
+        <div class="card__header"><div class="card__title">جدول مقارنة المخططات المجاورة</div></div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>المخطط</th><th>التصنيف</th><th>متوسط السعر (ر.س/م²)</th><th>الموقع</th><th>الفجوة عن رابية الغد</th></tr></thead>
+            <thead>
+              <tr>
+                <th>المخطط</th>
+                <th>الموقع</th>
+                <th>عدد القطع</th>
+                <th>متوسط سعر المتر</th>
+                <th>التصنيف السوقي</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr><td><strong>رابية الغد (سكني)</strong></td><td><span class="badge badge--gold">المرجع</span></td><td><span class="num-en">1,213</span></td><td>طريق الملك عبدالله</td><td>—</td></tr>
-              <tr><td>آل مانع - حي المسك</td><td>سكني</td><td><span class="num-en">1,200-1,240</span></td><td>طريق الملك عبدالله</td><td><span class="badge badge--soft">مماثل</span></td></tr>
-              <tr><td>نسمات العروبة</td><td>سكني</td><td><span class="num-en">1,200</span></td><td>طريق الملك عبدالله</td><td><span class="badge badge--down">-1.1%</span></td></tr>
-              <tr><td>الفيروز - قرى آل غليظ</td><td>سكني</td><td><span class="num-en">800</span></td><td>غرب المدينة</td><td><span class="badge badge--down">-34%</span></td></tr>
-              <tr><td>صفقات حي العقيق المنفّذة</td><td>سكني</td><td><span class="num-en">1,132</span> متوسط</td><td>المنطقة المجاورة</td><td><span class="badge badge--down">-6.7%</span></td></tr>
+              <tr style="background:rgba(189,154,95,0.06);"><td><strong>رابية الغد (مخططنا)</strong></td><td>طريق الملك عبدالله</td><td class="num-en">108</td><td class="num-en"><strong>1,209</strong></td><td><span class="badge b-gold">المرجع</span></td></tr>
+              <tr><td>آل مانع</td><td>حي المسك</td><td class="num-en">73</td><td class="num-en">1,220</td><td><span class="badge b-warn">منافس مباشر — أعلى قليلاً</span></td></tr>
+              <tr><td>نسمات العروبة</td><td>طريق الملك عبدالله</td><td class="num-en">386</td><td class="num-en">1,200</td><td><span class="badge b-warn">منافس بحجم كبير</span></td></tr>
+              <tr><td>الفيروز</td><td>قرى آل غليظ</td><td class="num-en">354</td><td class="num-en">800</td><td><span class="badge b-soft">شريحة مختلفة (اقتصادي)</span></td></tr>
             </tbody>
           </table>
         </div>
-        <div class="insight">
-          <strong>قراءة سوقية:</strong> رابية الغد متموضع في الشريحة العليا للسوق المحيط، مما يبرر الموقع المتميز لكنه يخلق ضغطاً تنافسياً مع آل مانع ونسمات اللذين يقدمان أسعاراً مماثلة بمنتج مكتمل البنية التحتية.
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card__header" style="justify-content:center"><div class="card__title">حساسية السعر — السكني</div></div>
+          <div style="text-align:center;padding:1rem 0;">
+            <div style="font-size:36px;font-weight:900;color:var(--gold-dark);line-height:1;">عالية</div>
+            <div style="font-size:12.5px;color:var(--text-muted);margin-top:8px;">كل +50 ريال = -15% احتمالية بيع</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">شريحة المشترين متوسطة الدخل وحساسة للفروق السعرية الصغيرة</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header" style="justify-content:center"><div class="card__title">حساسية السعر — التجاري</div></div>
+          <div style="text-align:center;padding:1rem 0;">
+            <div style="font-size:36px;font-weight:900;color:var(--gold-dark);line-height:1;">منخفضة</div>
+            <div style="font-size:12.5px;color:var(--text-muted);margin-top:8px;">المشتري التجاري يقيّم العائد لا السعر</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">قرار الشراء التجاري يعتمد على حركة المرور وقابلية التأجير</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header" style="justify-content:center"><div class="card__title">قدرة السوق على الاستيعاب</div></div>
+          <div style="text-align:center;padding:1rem 0;">
+            <div style="font-size:36px;font-weight:900;color:var(--gold-dark);line-height:1;">متوسطة</div>
+            <div style="font-size:12.5px;color:var(--text-muted);margin-top:8px;">المنافس آل مانع باع 15 قطعة في 3 أشهر</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">السوق يستوعب ~5-6 قطع/شهر للمخطط الواحد في هذه الشريحة</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">التشخيص السوقي</div></div>
+        <div class="finding">
+          <div class="finding-ic pos">✓</div>
+          <div class="finding-body">
+            <div class="finding-title">السعر التجاري: مناسب — مدعوم بالسوق</div>
+            <div class="finding-text"><span class="num-en">1,379</span> ريال/م² (مرجح) قريب من المتوسط السوقي للتجاري المماثل، وأقل من سقف السوق (<span class="num-en">1,500</span>) — هامش جيد للتسويق.</div>
+          </div>
+        </div>
+        <div class="finding">
+          <div class="finding-ic warn">!</div>
+          <div class="finding-body">
+            <div class="finding-title">السعر السكني: أعلى من السوق — مدعوم جزئياً</div>
+            <div class="finding-text"><span class="num-en">1,209</span> ريال (مرجح) أعلى من متوسط الصفقات المنفذة (<span class="num-en">1,132</span>) بـ 6.8%، لكنه مقارب للعرض في المخططات المنافسة (<span class="num-en">1,200-1,240</span>). الفرصة تعتمد على حسن التسويق والتمييز.</div>
+          </div>
+        </div>
+        <div class="finding">
+          <div class="finding-ic pos">✓</div>
+          <div class="finding-body">
+            <div class="finding-title">التوقيت يدعم الطرح</div>
+            <div class="finding-text">السوق في مسار صاعد منذ Q2 2025 وحقق نمواً 22% سنوياً — التوقيت يعمل لصالح المشروع.</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== PAGE: PHASES ===== -->
+    <!-- ================================================== -->
+    <!-- 5. تحليل المراحل -->
+    <!-- ================================================== -->
     <section class="page" id="page-phases">
       <div class="page__header">
         <div>
           <h1 class="page__title">تحليل المراحل البيعية</h1>
-          <p class="page__subtitle">3 مراحل · 12 شهراً · توزيع استراتيجي للمخزون والقيمة</p>
+          <p class="page__subtitle">توزيع القطع والقيم على ثلاث مراحل خلال 12 شهراً — ومدى تماسك المنطق المرحلي</p>
         </div>
       </div>
 
       <div class="grid-3">
         <div class="phase-card">
-          <div class="phase-card__num">المرحلة الأولى — 3 أشهر</div>
-          <div class="phase-card__title">الإطلاق وبناء الزخم</div>
-          <div class="phase-card__row"><span>عدد القطع</span><span><span class="num-en">35</span></span></div>
-          <div class="phase-card__row"><span>المساحة</span><span><span class="num-en">20,813</span> م²</span></div>
-          <div class="phase-card__row"><span>قيمة المبيعات</span><span><span class="num-en">24.6</span> م ر.س</span></div>
-          <div class="phase-card__row"><span>نسبة من الإجمالي</span><span><span class="num-en">28.3%</span></span></div>
-          <div class="phase-card__row"><span>تجاري داخلي</span><span><span class="num-en">6</span> قطع</span></div>
-          <div class="phase-card__row"><span>سكني</span><span><span class="num-en">29</span> قطعة</span></div>
+          <div class="phase-card__num">المرحلة 1 / 3</div>
+          <div class="phase-card__title">بناء الزخم</div>
+          <div class="phase-card__row"><span>المدة</span><span>3 أشهر</span></div>
+          <div class="phase-card__row"><span>عدد القطع</span><span><span class="num-en">35</span> قطعة (32%)</span></div>
+          <div class="phase-card__row"><span>قيمة المبيعات</span><span><span class="num-en">24.6</span> مليون</span></div>
+          <div class="phase-card__row"><span>معدل البيع</span><span><span class="num-en">11.7</span> / شهر</span></div>
+          <div class="phase-card__row"><span>التقييم</span><span><span class="badge b-warn">طموح</span></span></div>
         </div>
         <div class="phase-card">
-          <div class="phase-card__num">المرحلة الثانية — 6 أشهر</div>
-          <div class="phase-card__title">تسييل الثقل الأكبر</div>
-          <div class="phase-card__row"><span>عدد القطع</span><span><span class="num-en">50</span></span></div>
-          <div class="phase-card__row"><span>المساحة</span><span><span class="num-en">32,679</span> م²</span></div>
-          <div class="phase-card__row"><span>قيمة المبيعات</span><span><span class="num-en">38.2</span> م ر.س</span></div>
-          <div class="phase-card__row"><span>نسبة من الإجمالي</span><span><span class="num-en">43.9%</span></span></div>
-          <div class="phase-card__row"><span>تجاري داخلي</span><span><span class="num-en">9</span> قطع</span></div>
-          <div class="phase-card__row"><span>سكني</span><span><span class="num-en">41</span> قطعة</span></div>
+          <div class="phase-card__num">المرحلة 2 / 3</div>
+          <div class="phase-card__title">التسييل الأكبر</div>
+          <div class="phase-card__row"><span>المدة</span><span>6 أشهر</span></div>
+          <div class="phase-card__row"><span>عدد القطع</span><span><span class="num-en">50</span> قطعة (46%)</span></div>
+          <div class="phase-card__row"><span>قيمة المبيعات</span><span><span class="num-en">38.2</span> مليون</span></div>
+          <div class="phase-card__row"><span>معدل البيع</span><span><span class="num-en">8.3</span> / شهر</span></div>
+          <div class="phase-card__row"><span>التقييم</span><span><span class="badge b-warn">واقعي بشروط</span></span></div>
         </div>
         <div class="phase-card">
-          <div class="phase-card__num">المرحلة الثالثة — 3 أشهر</div>
-          <div class="phase-card__title">التجاري المميّز</div>
-          <div class="phase-card__row"><span>عدد القطع</span><span><span class="num-en">23</span></span></div>
-          <div class="phase-card__row"><span>المساحة</span><span><span class="num-en">16,324</span> م²</span></div>
-          <div class="phase-card__row"><span>قيمة المبيعات</span><span><span class="num-en">24.2</span> م ر.س</span></div>
-          <div class="phase-card__row"><span>نسبة من الإجمالي</span><span><span class="num-en">27.8%</span></span></div>
-          <div class="phase-card__row"><span>تجاري رئيسي</span><span><span class="num-en">11</span> قطعة</span></div>
-          <div class="phase-card__row"><span>سكني</span><span><span class="num-en">12</span> قطعة</span></div>
+          <div class="phase-card__num">المرحلة 3 / 3</div>
+          <div class="phase-card__title">القطع المميزة</div>
+          <div class="phase-card__row"><span>المدة</span><span>3 أشهر</span></div>
+          <div class="phase-card__row"><span>عدد القطع</span><span><span class="num-en">23</span> قطعة (21%)</span></div>
+          <div class="phase-card__row"><span>قيمة المبيعات</span><span><span class="num-en">24.2</span> مليون</span></div>
+          <div class="phase-card__row"><span>معدل البيع</span><span><span class="num-en">7.7</span> / شهر</span></div>
+          <div class="phase-card__row"><span>التقييم</span><span><span class="badge b-pos">منطقي</span></span></div>
         </div>
       </div>
 
       <div class="grid-2 mt-20">
         <div class="card">
-          <div class="card__header"><div class="card__title">مقارنة قيمة المبيعات بين المراحل<small>مليون ريال سعودي</small></div></div>
-          <div class="chart-wrap"><canvas id="chartPhases"></canvas></div>
+          <div class="card__header"><div class="card__title">توزيع القطع على المراحل</div></div>
+          <div class="chart-wrap"><canvas id="phasePlots"></canvas></div>
         </div>
         <div class="card">
-          <div class="card__header"><div class="card__title">الجدول الزمني التراكمي للإيرادات<small>افتراض تحقق 100% من الأهداف لكل مرحلة</small></div></div>
-          <div class="chart-wrap"><canvas id="chartCumulative"></canvas></div>
+          <div class="card__header"><div class="card__title">توزيع القيمة على المراحل</div></div>
+          <div class="chart-wrap"><canvas id="phaseValue"></canvas></div>
         </div>
       </div>
 
-      <div class="insight mt-20">
-        <strong>قراءة استراتيجية للمراحل:</strong> الخطة تربط بدء كل مرحلة بإنجاز 80% من المرحلة السابقة — وهي آلية ذكية تحمي السيولة لكنها تحوّل أي تأخر في البيع إلى تأخر متراكم على المراحل اللاحقة. تأجيل التجاري الرئيسي للمرحلة الثالثة قرار صحيح لرفع القيمة، لكنه يضع <strong>17.8%</strong> من إجمالي القيمة المخططة (15.5م ر.س) في الربع الأخير من السنة — وهي مخاطرة تركيز يجب التحوط لها.
-      </div>
-    </section>
-
-    <!-- ===== PAGE: OUTLIERS ===== -->
-    <section class="page" id="page-outliers">
-      <div class="page__header">
-        <div>
-          <h1 class="page__title">القيم الشاذة في التسعير</h1>
-          <p class="page__subtitle">12 قطعة تخرج عن المعدل بأكثر من 1.5 انحراف معياري · مرشحة للمراجعة</p>
-        </div>
-      </div>
-
-      <div class="kpi-grid">
-        <div class="kpi"><div class="kpi__top"><span class="kpi__label">قيم شاذة موجبة</span></div><div class="kpi__value"><span class="num-en">3</span><span class="unit">قطع</span></div><div class="kpi__sub up">أعلى من المتوسط</div></div>
-        <div class="kpi"><div class="kpi__top"><span class="kpi__label">قيم شاذة سالبة</span></div><div class="kpi__value"><span class="num-en">9</span><span class="unit">قطع</span></div><div class="kpi__sub down">أقل من المتوسط</div></div>
-        <div class="kpi"><div class="kpi__top"><span class="kpi__label">أكبر انحراف موجب</span></div><div class="kpi__value"><span class="num-en">+21.3%</span></div><div class="kpi__sub">قطعة 1 (تجاري واجهة الملك عبدالله)</div></div>
-        <div class="kpi"><div class="kpi__top"><span class="kpi__label">أكبر انحراف سالب</span></div><div class="kpi__value"><span class="num-en">-15.9%</span></div><div class="kpi__sub">قطعة 108 (سكني طبوغرافيا صعبة)</div></div>
-      </div>
-
-      <div class="grid-2-1 mt-20">
-        <div class="card">
-          <div class="card__header"><div class="card__title">خريطة الشذوذ السعري<small>توزيع القطع حول المتوسط · القيم الشاذة بلون ذهبي مكثّف</small></div></div>
-          <div class="chart-wrap tall"><canvas id="chartOutliers"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card__header"><div class="card__title">تفسير الشذوذ</div></div>
-          <div style="font-size:13px;line-height:1.8;color:var(--text);">
-            <p style="margin-bottom:12px;"><strong style="color:var(--gold-dark);">الشذوذ الموجب:</strong> قطع التجاري على واجهة طريق الملك عبدالله (1، 4) تستفيد من سعر معياري أعلى (1500 ر.س) إضافةً إلى مزايا الواجهة والشوارع المتعددة.</p>
-            <p><strong style="color:var(--gold-dark);">الشذوذ السالب:</strong> قطع 47، 49، 106-108 سعرها منخفض بسبب طبوغرافيا صعبة (انحدار شديد) أو موقع مجرى سيل أو شكل غير منتظم — وهي خصومات تلقائية من نموذج التسعير المعياري.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card mt-20">
-        <div class="card__header"><div class="card__title">قائمة القيم الشاذة التفصيلية</div></div>
+      <div class="card">
+        <div class="card__header"><div class="card__title">منطق التدرج السعري بين المراحل</div></div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>القطعة</th><th>التصنيف</th><th>المساحة (م²)</th><th>سعر المتر (ر.س)</th><th>متوسط الفئة</th><th>الانحراف %</th><th>السبب المرجّح</th></tr></thead>
+            <thead>
+              <tr>
+                <th>المرحلة</th>
+                <th>طبيعة القطع</th>
+                <th>متوسط سعر المتر</th>
+                <th>% من القيمة</th>
+                <th>تقييم المنطق</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr><td><strong>1</strong></td><td><span class="badge badge--dark">تجاري</span></td><td><span class="num-en">692</span></td><td><span class="num-en">1,668</span></td><td><span class="num-en">1,376</span></td><td><span class="badge badge--up">+21.3%</span></td><td>واجهة طريق الملك عبدالله + ميزات متعددة</td></tr>
-              <tr><td><strong>4</strong></td><td><span class="badge badge--dark">تجاري</span></td><td><span class="num-en">829</span></td><td><span class="num-en">1,630</span></td><td><span class="num-en">1,376</span></td><td><span class="badge badge--up">+18.5%</span></td><td>قطعة زاوية على الواجهة الرئيسية</td></tr>
-              <tr><td><strong>91</strong></td><td><span class="badge badge--gold">سكني</span></td><td><span class="num-en">504</span></td><td><span class="num-en">1,314</span></td><td><span class="num-en">1,213</span></td><td><span class="badge badge--up">+8.4%</span></td><td>مساحة صغيرة + خلف تجاري + مزايا متعددة</td></tr>
-              <tr><td><strong>39</strong></td><td><span class="badge badge--gold">سكني</span></td><td><span class="num-en">433</span></td><td><span class="num-en">1,297</span></td><td><span class="num-en">1,213</span></td><td><span class="badge badge--up">+6.9%</span></td><td>أصغر مساحة في المخطط (شريحة سعر المتر الأعلى)</td></tr>
-              <tr><td><strong>87</strong></td><td><span class="badge badge--dark">تجاري</span></td><td><span class="num-en">712</span></td><td><span class="num-en">1,198</span></td><td><span class="num-en">1,376</span></td><td><span class="badge badge--down">-12.9%</span></td><td>طبوغرافيا منحدرة + شكل غير منتظم</td></tr>
-              <tr><td><strong>44, 51, 107</strong></td><td><span class="badge badge--gold">سكني</span></td><td><span class="num-en">~700-1062</span></td><td><span class="num-en">1,137</span></td><td><span class="num-en">1,213</span></td><td><span class="badge badge--down">-6.2%</span></td><td>مساحات كبيرة (خصم حجم)</td></tr>
-              <tr><td><strong>47, 49</strong></td><td><span class="badge badge--gold">سكني</span></td><td><span class="num-en">747-784</span></td><td><span class="num-en">1,079</span></td><td><span class="num-en">1,213</span></td><td><span class="badge badge--down">-11.1%</span></td><td>طبوغرافيا منحدرة + موقع غير ممتاز</td></tr>
-              <tr><td><strong>106</strong></td><td><span class="badge badge--gold">سكني</span></td><td><span class="num-en">552</span></td><td><span class="num-en">1,067</span></td><td><span class="num-en">1,213</span></td><td><span class="badge badge--down">-12.0%</span></td><td>طبوغرافيا شديدة الانحدار + شكل غير منتظم</td></tr>
-              <tr><td><strong>108</strong></td><td><span class="badge badge--gold">سكني</span></td><td><span class="num-en">802</span></td><td><span class="num-en">1,020</span></td><td><span class="num-en">1,213</span></td><td><span class="badge badge--down">-15.9%</span></td><td>أعلى خصم - خصائص فيزيائية وجغرافية صعبة</td></tr>
+              <tr><td><strong>المرحلة 1</strong> — بناء الزخم</td><td>سكني داخلي + بعض التجاري الداخلي</td><td class="num-en">~1,160</td><td class="num-en">28.3%</td><td><span class="badge b-pos">سعر تنافسي للجذب ✓</span></td></tr>
+              <tr><td><strong>المرحلة 2</strong> — التسييل</td><td>سكني متوسط + تجاري داخلي</td><td class="num-en">~1,231</td><td class="num-en">43.9%</td><td><span class="badge b-pos">رفع تدريجي مدروس ✓</span></td></tr>
+              <tr><td><strong>المرحلة 3</strong> — القطع المميزة</td><td>تجاري الواجهة الرئيسية</td><td class="num-en">~1,763</td><td class="num-en">27.8%</td><td><span class="badge b-pos">إغلاق بقطع عالية القيمة ✓</span></td></tr>
             </tbody>
           </table>
         </div>
       </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">تقييم منطق المراحل</div></div>
+        <div class="finding">
+          <div class="finding-ic pos">✓</div>
+          <div class="finding-body">
+            <div class="finding-title">التدرج السعري سليم استراتيجياً</div>
+            <div class="finding-text">البدء بأسعار تنافسية لبناء الزخم، ثم رفع تدريجي مع تحسن الإقبال، وإنهاء بالقطع التجارية المميزة — منطق "Price Anchoring" مدروس.</div>
+          </div>
+        </div>
+        <div class="finding">
+          <div class="finding-ic warn">!</div>
+          <div class="finding-body">
+            <div class="finding-title">المرحلة 1 معدلها مرتفع نسبياً</div>
+            <div class="finding-text"><span class="num-en">11.7</span> قطعة شهرياً معدل طموح — يتطلب حملة تسويقية مكثفة وتجهيزاً مسبقاً للجمهور قبل الإطلاق.</div>
+          </div>
+        </div>
+        <div class="finding">
+          <div class="finding-ic warn">!</div>
+          <div class="finding-body">
+            <div class="finding-title">المرحلة 2 تشكل عمود فقري الخطة</div>
+            <div class="finding-text">46% من القطع و 44% من القيمة في 6 أشهر — أي إخفاق هنا ينعكس مباشرة على نجاح الخطة الكلية. تستحق متابعة شهرية دقيقة.</div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- ===== PAGE: RECOMMENDATIONS ===== -->
+    <!-- ================================================== -->
+    <!-- 6. سرعة البيع -->
+    <!-- ================================================== -->
+    <section class="page" id="page-velocity">
+      <div class="page__header">
+        <div>
+          <h1 class="page__title">تحليل سرعة البيع</h1>
+          <p class="page__subtitle">هل المعدلات المخططة قابلة للتحقق في ظل ظروف السوق الفعلية؟</p>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">المعدل الإجمالي المطلوب</span></div>
+          <div class="kpi__value"><span class="num-en">9.0</span></div>
+          <div class="kpi__sub">قطعة شهرياً</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">معدل المنافس المرجعي</span></div>
+          <div class="kpi__value"><span class="num-en">5.0</span></div>
+          <div class="kpi__sub">قطعة/شهر (آل مانع)</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">الفجوة عن المعيار</span></div>
+          <div class="kpi__value" style="color:var(--gold-dark)"><span class="num-en">+80</span><span class="unit">%</span></div>
+          <div class="kpi__sub warn">▲ معدل طموح</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">التصنيف</span></div>
+          <div class="kpi__value" style="font-size:22px;">متفائل</div>
+          <div class="kpi__sub">قابل للتحقق بحملة تسويقية قوية</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">معدل البيع الشهري المطلوب لكل مرحلة</div></div>
+        <div class="chart-wrap"><canvas id="velocityChart"></canvas></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card__header"><div class="card__title">تصنيف معدلات البيع</div></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>المرحلة</th>
+                  <th>قطعة/شهر</th>
+                  <th>التصنيف</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>المرحلة 1</td><td class="num-en">11.7</td><td><span class="badge b-neg">عالي المخاطر — يتطلب إعداد مكثف</span></td></tr>
+                <tr><td>المرحلة 2</td><td class="num-en">8.3</td><td><span class="badge b-warn">متفائل — ممكن مع زخم المرحلة 1</span></td></tr>
+                <tr><td>المرحلة 3</td><td class="num-en">7.7</td><td><span class="badge b-pos">واقعي — قطع نوعية بطلب مستقر</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">مقارنة بالمعايير السوقية</div></div>
+          <div class="chart-wrap"><canvas id="velocityBenchmark"></canvas></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">تحليل واقعية المعدلات</div></div>
+        <div class="finding">
+          <div class="finding-ic warn">!</div>
+          <div class="finding-body">
+            <div class="finding-title">المرحلة 1 تحديها الأكبر</div>
+            <div class="finding-text"><span class="num-en">11.7</span> قطعة شهرياً يعني توفير 3 مشترين جاهزين تقريباً كل أسبوع — يستلزم بناء قاعدة بيانات عملاء مهتمين قبل الإطلاق وتدريب فريق مبيعات متخصص.</div>
+          </div>
+        </div>
+        <div class="finding">
+          <div class="finding-ic pos">✓</div>
+          <div class="finding-body">
+            <div class="finding-title">المرحلة 3 منطقية</div>
+            <div class="finding-text"><span class="num-en">7.7</span> قطعة شهرياً للقطع التجارية المميزة قابل للتحقق، خاصة أن قاعدة العملاء تكون قد بُنيت من المرحلتين السابقتين.</div>
+          </div>
+        </div>
+        <div class="finding">
+          <div class="finding-ic warn">!</div>
+          <div class="finding-body">
+            <div class="finding-title">حساسية موسمية</div>
+            <div class="finding-text">المرحلة 2 (6 أشهر) قد تشمل أشهر صيف ضعيفة الطلب — يستحسن جدولة شهور الذروة (10-12, 1-3) لها.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 7. التدفق النقدي -->
+    <!-- ================================================== -->
+    <section class="page" id="page-cashflow">
+      <div class="page__header">
+        <div>
+          <h1 class="page__title">تحليل التدفق النقدي</h1>
+          <p class="page__subtitle">متى يدخل النقد؟ ومتى تنشأ فجوة سيولة محتملة؟</p>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">إجمالي التدفقات</span></div>
+          <div class="kpi__value" style="color:var(--gold-dark)"><span class="num-en">87.6</span><span class="unit">M</span></div>
+          <div class="kpi__sub">ريال خلال 12 شهراً</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">متوسط شهري</span></div>
+          <div class="kpi__value"><span class="num-en">7.3</span><span class="unit">M</span></div>
+          <div class="kpi__sub">ريال/شهر (متوسط حسابي)</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">ذروة التدفق المتوقعة</span></div>
+          <div class="kpi__value"><span class="num-en">8.2</span><span class="unit">M</span></div>
+          <div class="kpi__sub">شهر 2 (المرحلة 1)</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__top"><span class="kpi__label">نقطة استرداد 50%</span></div>
+          <div class="kpi__value"><span class="num-en">~ 7</span></div>
+          <div class="kpi__sub">شهر (نهاية المرحلة 2 المبكرة)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">منحنى التدفق النقدي الشهري المتوقع</div></div>
+        <div class="chart-wrap tall"><canvas id="cashflowChart"></canvas></div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">جدول التدفق النقدي التراكمي</div></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>الفترة</th>
+                <th>قطع مباعة</th>
+                <th>إيرادات الشهر (مليون)</th>
+                <th>التراكمي (مليون)</th>
+                <th>% الإنجاز</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>الشهر 1-3 (المرحلة 1)</td><td class="num-en">35</td><td class="num-en">8.2</td><td class="num-en">24.6</td><td class="num-en">28.1%</td></tr>
+              <tr><td>الشهر 4-6 (نصف المرحلة 2)</td><td class="num-en">25</td><td class="num-en">6.4</td><td class="num-en">43.7</td><td class="num-en">49.9%</td></tr>
+              <tr><td>الشهر 7-9 (نصف المرحلة 2)</td><td class="num-en">25</td><td class="num-en">6.4</td><td class="num-en">62.8</td><td class="num-en">71.6%</td></tr>
+              <tr><td>الشهر 10-12 (المرحلة 3)</td><td class="num-en">23</td><td class="num-en">8.1</td><td class="num-en">87.0</td><td class="num-en">100%</td></tr>
+              <tr class="total-row"><td>الإجمالي</td><td class="num-en">108</td><td class="num-en">7.3 (متوسط)</td><td class="num-en">87.0</td><td class="num-en">100%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card__header"><div class="card__title">نقاط القوة في التدفق</div></div>
+          <div class="finding">
+            <div class="finding-ic pos">✓</div>
+            <div class="finding-body">
+              <div class="finding-title">دخل نقدي مبكر قوي</div>
+              <div class="finding-text">28% من القيمة في أول 3 أشهر — يقلل الاعتماد على التمويل الخارجي ويحسن دورة رأس المال العامل.</div>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="finding-ic pos">✓</div>
+            <div class="finding-body">
+              <div class="finding-title">تدفق متوازن نسبياً</div>
+              <div class="finding-text">الفرق بين أعلى وأدنى شهر معتدل — لا يوجد شهور فقيرة قاتلة.</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">مخاطر السيولة</div></div>
+          <div class="finding">
+            <div class="finding-ic warn">!</div>
+            <div class="finding-body">
+              <div class="finding-title">فجوة محتملة في الأشهر 4-6</div>
+              <div class="finding-text">إذا تأخرت المرحلة 1 شهراً واحداً، فإن إيرادات الشهر 4-5 قد تنخفض إلى 4-5 مليون فقط، مما يضغط على المصروفات الثابتة.</div>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="finding-ic warn">!</div>
+            <div class="finding-body">
+              <div class="finding-title">اعتماد على المرحلة 3</div>
+              <div class="finding-text">28% من القيمة في آخر 3 أشهر مرتبط بـ 23 قطعة تجارية — أي تأخير في تسويقها يؤثر على الإغلاق المالي للمشروع.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 8. تحليل المخاطر -->
+    <!-- ================================================== -->
+    <section class="page" id="page-risk">
+      <div class="page__header">
+        <div>
+          <h1 class="page__title">تحليل المخاطر</h1>
+          <p class="page__subtitle">تحديد وتصنيف المخاطر الرئيسية وإجراءات التخفيف المقترحة</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">مصفوفة المخاطر (الاحتمالية × الأثر)</div></div>
+        <div class="matrix">
+          <div></div>
+          <div style="font-size:11px;text-align:center;color:var(--text-muted);font-weight:700;">أثر منخفض</div>
+          <div style="font-size:11px;text-align:center;color:var(--text-muted);font-weight:700;">أثر متوسط</div>
+          <div style="font-size:11px;text-align:center;color:var(--text-muted);font-weight:700;">أثر عالي</div>
+
+          <div style="font-size:11px;color:var(--text-muted);font-weight:700;display:grid;place-items:center;">احتمالية عالية</div>
+          <div class="matrix-cell med"><strong>—</strong></div>
+          <div class="matrix-cell med"><strong>R3</strong>تأخر المرحلة 1</div>
+          <div class="matrix-cell high"><strong>R1</strong>عدم بلوغ سرعة البيع</div>
+
+          <div style="font-size:11px;color:var(--text-muted);font-weight:700;display:grid;place-items:center;">احتمالية متوسطة</div>
+          <div class="matrix-cell low"><strong>R6</strong>تأخر مرفق خدمي</div>
+          <div class="matrix-cell med"><strong>R2</strong>ضغط منافس على السعر</div>
+          <div class="matrix-cell med"><strong>R4</strong>تباطؤ المرحلة 2</div>
+
+          <div style="font-size:11px;color:var(--text-muted);font-weight:700;display:grid;place-items:center;">احتمالية منخفضة</div>
+          <div class="matrix-cell low"><strong>R7</strong>تغير أسعار الفائدة</div>
+          <div class="matrix-cell low"><strong>R5</strong>تأخر التجاري الواجهة</div>
+          <div class="matrix-cell med"><strong>R8</strong>ركود اقتصادي إقليمي</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">تفاصيل المخاطر وإجراءات التخفيف</div></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:50px;">الكود</th>
+                <th>المخاطرة</th>
+                <th>المستوى</th>
+                <th>إجراء التخفيف</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:var(--gold-dark);">R1</strong></td>
+                <td>عدم بلوغ معدل البيع المخطط (9 قطعة/شهر)</td>
+                <td><span class="badge b-neg">عالية</span></td>
+                <td>قاعدة عملاء مسبقة + حملة تسويقية مرحلتين</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--gold-dark);">R2</strong></td>
+                <td>ضغط منافس آل مانع ونسمات على السعر</td>
+                <td><span class="badge b-warn">متوسطة</span></td>
+                <td>تمييز المنتج بمزايا الموقع + باقات تسهيل</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--gold-dark);">R3</strong></td>
+                <td>تأخر المرحلة 1 يخلق تأثير كرة الثلج</td>
+                <td><span class="badge b-warn">متوسطة-عالية</span></td>
+                <td>إعداد كامل قبل الإطلاق + إعلان مبكر بـ 60 يوم</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--gold-dark);">R4</strong></td>
+                <td>تباطؤ المرحلة 2 (الأطول والأكبر)</td>
+                <td><span class="badge b-warn">متوسطة</span></td>
+                <td>تجزئتها لمراحل صغيرة (Sub-Phases) شهر-شهرين</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--gold-dark);">R5</strong></td>
+                <td>تأخر بيع التجاري على الواجهة الرئيسية</td>
+                <td><span class="badge b-pos">منخفضة</span></td>
+                <td>تسويق B2B مع مطورين/مستثمرين تجاريين</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--gold-dark);">R6</strong></td>
+                <td>تأخر إنجاز البنية التحتية (إنارة، أرصفة)</td>
+                <td><span class="badge b-pos">منخفضة</span></td>
+                <td>متابعة شهرية مع المقاول + جدول صارم</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--gold-dark);">R7</strong></td>
+                <td>ارتفاع أسعار الفائدة على التمويل العقاري</td>
+                <td><span class="badge b-pos">منخفضة</span></td>
+                <td>اتفاقيات مع بنوك لباقات تمويل تفضيلية</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--gold-dark);">R8</strong></td>
+                <td>ركود اقتصادي يؤثر على القوة الشرائية</td>
+                <td><span class="badge b-warn">متوسطة</span></td>
+                <td>سيناريو محافظ احتياطي جاهز للتنفيذ السريع</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card" style="text-align:center;">
+          <div class="card__header" style="justify-content:center;"><div class="card__title">المخاطر العالية</div></div>
+          <div style="font-size:48px;font-weight:900;color:var(--neg);line-height:1;"><span class="num-en">1</span></div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">مخاطرة واحدة عالية الأولوية</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div class="card__header" style="justify-content:center;"><div class="card__title">المخاطر المتوسطة</div></div>
+          <div style="font-size:48px;font-weight:900;color:var(--warn);line-height:1;"><span class="num-en">4</span></div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">مخاطر تستحق متابعة دورية</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div class="card__header" style="justify-content:center;"><div class="card__title">المخاطر المنخفضة</div></div>
+          <div style="font-size:48px;font-weight:900;color:var(--pos);line-height:1;"><span class="num-en">3</span></div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">مخاطر قابلة للإدارة</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 9. السيناريوهات -->
+    <!-- ================================================== -->
+    <section class="page" id="page-scenarios">
+      <div class="page__header">
+        <div>
+          <h1 class="page__title">السيناريوهات الاستراتيجية</h1>
+          <p class="page__subtitle">قراءة لثلاث مسارات محتملة وتأثيرها على نتائج المشروع</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="scenario" style="border-top-color:var(--warn);">
+          <div class="scenario-name" style="color:var(--warn);">السيناريو 1</div>
+          <div class="scenario-title">المحافظ</div>
+          <ul class="scenario-list">
+            <li><span>معدل البيع</span><strong><span class="num-en">6</span> قطعة/شهر</strong></li>
+            <li><span>المدة الفعلية</span><strong><span class="num-en">18</span> شهراً (+50%)</strong></li>
+            <li><span>الإيراد المحقق</span><strong><span class="num-en">83</span> مليون (-5%)</strong></li>
+            <li><span>تخفيض السعر</span><strong><span class="num-en">3-5%</span></strong></li>
+            <li><span>الاحتمالية</span><strong style="color:var(--warn);"><span class="num-en">35%</span></strong></li>
+          </ul>
+          <div style="background:var(--warn-bg);color:var(--warn);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:700;text-align:center;">يحتاج خطة إنقاذ سريعة</div>
+        </div>
+
+        <div class="scenario" style="border-top-color:var(--gold-dark); transform:scale(1.03); box-shadow:var(--shadow-lg);">
+          <div class="scenario-name">السيناريو 2 (الأساسي)</div>
+          <div class="scenario-title">المتوقع</div>
+          <ul class="scenario-list">
+            <li><span>معدل البيع</span><strong><span class="num-en">9</span> قطعة/شهر</strong></li>
+            <li><span>المدة الفعلية</span><strong><span class="num-en">12</span> شهراً (المخطط)</strong></li>
+            <li><span>الإيراد المحقق</span><strong><span class="num-en">87</span> مليون (المستهدف)</strong></li>
+            <li><span>تعديل السعر</span><strong>± <span class="num-en">0%</span></strong></li>
+            <li><span>الاحتمالية</span><strong style="color:var(--gold-dark);"><span class="num-en">50%</span></strong></li>
+          </ul>
+          <div style="background:rgba(189,154,95,0.15);color:var(--gold-dark);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:700;text-align:center;">السيناريو الأكثر ترجيحاً</div>
+        </div>
+
+        <div class="scenario" style="border-top-color:var(--pos);">
+          <div class="scenario-name" style="color:var(--pos);">السيناريو 3</div>
+          <div class="scenario-title">الهجومي</div>
+          <ul class="scenario-list">
+            <li><span>معدل البيع</span><strong><span class="num-en">13</span> قطعة/شهر</strong></li>
+            <li><span>المدة الفعلية</span><strong><span class="num-en">9</span> أشهر (-25%)</strong></li>
+            <li><span>الإيراد المحقق</span><strong><span class="num-en">92</span> مليون (+5%)</strong></li>
+            <li><span>رفع السعر</span><strong>+<span class="num-en">3-5%</span></strong></li>
+            <li><span>الاحتمالية</span><strong style="color:var(--pos);"><span class="num-en">15%</span></strong></li>
+          </ul>
+          <div style="background:var(--pos-bg);color:var(--pos);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:700;text-align:center;">يستلزم زخماً سوقياً قوياً</div>
+        </div>
+      </div>
+
+      <div class="card mt-20">
+        <div class="card__header"><div class="card__title">مقارنة بصرية للسيناريوهات</div></div>
+        <div class="chart-wrap tall"><canvas id="scenariosChart"></canvas></div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><div class="card__title">القيمة المتوقعة المرجحة (Expected Value)</div></div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center;padding:1rem;">
+          <div>
+            <div style="font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:4px;">محافظ × 35%</div>
+            <div style="font-size:20px;font-weight:900;color:var(--black);"><span class="num-en">29.0M</span></div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:4px;">متوقع × 50%</div>
+            <div style="font-size:20px;font-weight:900;color:var(--black);"><span class="num-en">43.5M</span></div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:4px;">هجومي × 15%</div>
+            <div style="font-size:20px;font-weight:900;color:var(--black);"><span class="num-en">13.8M</span></div>
+          </div>
+          <div style="background:rgba(189,154,95,0.1);border-radius:8px;padding:12px;border:1px solid var(--gold-light);">
+            <div style="font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:4px;">القيمة المرجحة</div>
+            <div style="font-size:24px;font-weight:900;color:var(--gold-dark);"><span class="num-en">86.3M</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- 10. التوصيات -->
+    <!-- ================================================== -->
     <section class="page" id="page-recommendations">
       <div class="page__header">
         <div>
-          <h1 class="page__title">التوصيات التنفيذية</h1>
-          <p class="page__subtitle">قرارات محددة قابلة للتنفيذ مباشرةً · مرتبة بأولوية الأثر المالي</p>
+          <h1 class="page__title">التوصيات الاستراتيجية</h1>
+          <p class="page__subtitle">إجراءات محددة وقابلة للتنفيذ مرتبة حسب الأولوية</p>
         </div>
       </div>
 
       <div class="grid-2">
         <div>
           <div class="rec">
-            <div class="rec__head"><div class="rec__num">1</div><div class="rec__pri high">أولوية عالية</div></div>
-            <div class="rec__title">مراجعة سعر القطع السكنية للمرحلة الأولى بخصم تكتيكي</div>
+            <div class="rec__head"><div class="rec__num"><span class="num-en">1</span></div><div class="rec__pri" style="color:var(--neg);">أولوية حرجة</div></div>
+            <div class="rec__title">بناء قاعدة عملاء مسبقة قبل الإطلاق بـ 60 يوم</div>
             <div class="rec__body">
-              تخفيض السعر السكني المعلن للمرحلة الأولى من <strong>1,213 ر.س/م² المتوسط</strong> إلى <strong>1,150-1,170 ر.س/م²</strong> (خصم 4-5%) لخلق فجوة تنافسية واضحة مع آل مانع ونسمات. الهدف: تسريع البيع في الـ 30 يوماً الأولى بنسبة 20% على الأقل.
+              جمع 200+ مهتم مؤهل عبر التسويق الرقمي والوسطاء قبل بدء المرحلة 1. هذا يقلل مخاطرة عدم بلوغ معدل 11.7 قطعة/شهر بنسبة كبيرة. الميزانية المقترحة: 250-400 ألف ريال للحملة المسبقة.
             </div>
-            <div class="rec__meta"><span class="badge badge--gold">29 قطعة سكنية</span><span class="badge badge--soft">أثر متوقع: -800 ألف ر.س</span></div>
           </div>
 
           <div class="rec">
-            <div class="rec__head"><div class="rec__num">2</div><div class="rec__pri high">أولوية عالية</div></div>
-            <div class="rec__title">إعادة تسعير القطع الشاذة سلباً (47، 49، 108)</div>
+            <div class="rec__head"><div class="rec__num"><span class="num-en">2</span></div><div class="rec__pri" style="color:var(--neg);">أولوية حرجة</div></div>
+            <div class="rec__title">تجزئة المرحلة 2 إلى 3 مراحل فرعية (شهرين كل واحدة)</div>
             <div class="rec__body">
-              هذه القطع سعرها أصلاً منخفض بسبب الخصم الفني، لكنها معرّضة لرفض المشترين بسبب الطبوغرافيا. التوصية: <strong>تقديم حوافز خدمية</strong> (إعداد أساسات، تسوية موقع) بدلاً من تخفيض إضافي للحفاظ على القيمة المعلنة.
+              بدلاً من 6 أشهر مفتوحة، قسّم المرحلة 2 إلى 3 شرائح من 17-17-16 قطعة كل شهرين، مع إطلاق تسويقي مصغر لكل واحدة. يخلق "أحداث بيعية" متتالية ويحافظ على الزخم.
             </div>
-            <div class="rec__meta"><span class="badge badge--gold">3 قطع</span><span class="badge badge--soft">حماية ~2.5م ر.س</span></div>
           </div>
 
           <div class="rec">
-            <div class="rec__head"><div class="rec__num">3</div><div class="rec__pri med">أولوية متوسطة</div></div>
-            <div class="rec__title">رفع سياسة الخصم لمشتري الجملة بتدرّج أوضح</div>
+            <div class="rec__head"><div class="rec__num"><span class="num-en">3</span></div><div class="rec__pri" style="color:var(--warn);">أولوية عالية</div></div>
+            <div class="rec__title">مراجعة سعر 10 قطع شاذة قبل الطرح</div>
             <div class="rec__body">
-              السياسة الحالية (2% لـ 3-5 قطع، 4% لـ 6+) ضيقة. الاقتراح: إضافة شريحة <strong>10 قطع فأكثر بخصم 6%</strong> لاستهداف المستثمرين المؤسسيين، خصوصاً للمرحلة الثانية ذات الثقل الأكبر.
+              القطع: 1، 39، 47، 49، 51، 91، 106، 107، 108. تتطلب إما تبرير سعري إضافي (للمرتفعة) أو تخفيض مدروس (للمنخفضة) لتجنب أسئلة العملاء وضعف الثقة.
             </div>
-            <div class="rec__meta"><span class="badge badge--gold">المرحلة 2</span><span class="badge badge--soft">احتمال صفقة جملة: 15-20 قطعة</span></div>
+          </div>
+
+          <div class="rec">
+            <div class="rec__head"><div class="rec__num"><span class="num-en">4</span></div><div class="rec__pri" style="color:var(--warn);">أولوية عالية</div></div>
+            <div class="rec__title">عقد اتفاقيات تمويل تفضيلية مع بنكين على الأقل</div>
+            <div class="rec__body">
+              باقات تمويل بفائدة مخفضة 0.25-0.5% لعملاء المخطط، إضافة إلى تسهيل دفعة أولى أقل (15% بدلاً من 20%). يقلل من حساسية السعر ويفتح شريحة عملاء أوسع.
+            </div>
           </div>
         </div>
 
         <div>
           <div class="rec">
-            <div class="rec__head"><div class="rec__num">4</div><div class="rec__pri med">أولوية متوسطة</div></div>
-            <div class="rec__title">تثبيت تسعير التجاري الرئيسي للمرحلة الثالثة</div>
+            <div class="rec__head"><div class="rec__num"><span class="num-en">5</span></div><div class="rec__pri" style="color:var(--gold-dark);">أولوية متوسطة</div></div>
+            <div class="rec__title">تخصيص القطع &gt; 800م² للمرحلة 3 مع باقة "مستثمر"</div>
             <div class="rec__body">
-              قطع التجاري على طريق الملك عبدالله (1، 4) بسعر <strong>1,629-1,668 ر.س/م²</strong> مدعوم بشكل ممتاز فنياً. <strong>عدم الخصم</strong> على هذه الفئة، وتأجيل البيع لما بعد افتتاح الشارع الرئيسي وظهور إشغال البناء حولها لرفع القيمة.
+              5 قطع كبيرة بقيمة 5.1M — يفضل تأجيلها للمرحلة 3 وعرضها على المستثمرين كمشاريع تطوير عقاري (وحدات سكنية أو مشاريع تجارية صغيرة) بدلاً من المستخدم النهائي.
             </div>
-            <div class="rec__meta"><span class="badge badge--gold">11 قطعة تجارية</span><span class="badge badge--soft">قيمة 15.5م ر.س</span></div>
           </div>
 
           <div class="rec">
-            <div class="rec__head"><div class="rec__num">5</div><div class="rec__pri med">أولوية متوسطة</div></div>
-            <div class="rec__title">إضافة آلية مراجعة شهرية لسرعة البيع</div>
+            <div class="rec__head"><div class="rec__num"><span class="num-en">6</span></div><div class="rec__pri" style="color:var(--gold-dark);">أولوية متوسطة</div></div>
+            <div class="rec__title">إنشاء لوحة قيادة شهرية لمتابعة الأداء الفعلي</div>
             <div class="rec__body">
-              تأسيس مؤشر <strong>Sell-Through Rate شهري</strong> بحد أدنى مستهدف (مثلاً 12 قطعة/شهر للمرحلة 1). الإخفاق في تحقيقه شهرين متتاليين يفعّل خصماً مباشراً 3% على المخزون المتبقي للمرحلة.
+              مؤشرات أساسية: قطع مباعة فعلياً مقابل المخطط، متوسط سعر متر فعلي، عملاء مهتمين، عملاء محولين. مراجعة شهرية مع التحرك السريع عند تجاوز انحراف -15% في أي مرحلة.
             </div>
-            <div class="rec__meta"><span class="badge badge--gold">حوكمة المبيعات</span></div>
           </div>
 
           <div class="rec">
-            <div class="rec__head"><div class="rec__num">6</div><div class="rec__pri low">أولوية منخفضة</div></div>
-            <div class="rec__title">دراسة طرح حزم تمويل عقاري مع شريك بنكي</div>
+            <div class="rec__head"><div class="rec__num"><span class="num-en">7</span></div><div class="rec__pri" style="color:var(--pos);">أولوية تكتيكية</div></div>
+            <div class="rec__title">تجهيز "خطة إنقاذ" سرية للسيناريو المحافظ</div>
             <div class="rec__body">
-              لاستهداف الشريحة السكنية للأسر، يمكن التفاوض مع <strong>2-3 بنوك</strong> لطرح تمويل عقاري ميسّر مع المخطط — رافعة طلب قوية دون تخفيض السعر المعلن.
+              حزمة جاهزة تشمل: تخفيض سعري 3% منضبط، إضافة هدايا ترويجية (تأمين، رسوم، إلخ)، وتمديد فترات السداد. تُفعّل تلقائياً إذا تجاوز انحراف الأداء -25% لمدة شهرين متتاليين.
             </div>
-            <div class="rec__meta"><span class="badge badge--gold">82 قطعة سكنية</span></div>
+          </div>
+
+          <div class="rec">
+            <div class="rec__head"><div class="rec__num"><span class="num-en">8</span></div><div class="rec__pri" style="color:var(--pos);">أولوية تكتيكية</div></div>
+            <div class="rec__title">تسويق مبكر للقطع التجارية الواجهة (المرحلة 3)</div>
+            <div class="rec__body">
+              رغم أن البيع الفعلي في المرحلة 3، يجب البدء في التسويق B2B مع مطورين تجاريين ومستثمرين منذ الشهر 4. هذه القطع تحقق 28% من الإيراد ولا تحتمل تأخراً.
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== PAGE: VERDICT ===== -->
+    <!-- ================================================== -->
+    <!-- 11. الحكم النهائي -->
+    <!-- ================================================== -->
     <section class="page" id="page-verdict">
       <div class="page__header">
         <div>
           <h1 class="page__title">الحكم النهائي</h1>
-          <p class="page__subtitle">التقييم الكلي لخطة التسعير وقابلية التنفيذ</p>
+          <p class="page__subtitle">التقييم الإجمالي والقرار الاستثماري النهائي</p>
         </div>
       </div>
 
       <div class="verdict">
-        <div class="verdict__label">الحكم التنفيذي</div>
-        <div class="verdict__title">الخطة معتمدة بتحفظات تنفيذية محددة</div>
+        <div class="verdict__label">القرار الاستثماري</div>
+        <div class="verdict__title">يحتاج تعديل محدود — قابل للتنفيذ بضمانات</div>
         <div class="verdict__desc">
-          نموذج التسعير مبنيّ على منهجية فنية صلبة بمعامل تباين منخفض (7.8%) ومراحل بيعية مدروسة. القلق الرئيسي يتمحور حول التموضع السكني فوق متوسط الصفقات المنفّذة في حي العقيق بنسبة 7.2% — وهي فجوة قابلة للإدارة لكنها تتطلب خصماً تكتيكياً في المرحلة الأولى لبناء الزخم. اعتماد التوصيات الست يرفع احتمالية تحقيق 90%+ من الأهداف خلال 12 شهراً.
+          مخطط رابية الغد يقدم مشروعاً ذا أساس تسعيري متين (تباين 4% فقط)، مدعوماً بموقع استراتيجي على طريق الملك عبدالله، وفي سوق صاعد بنمو 22% سنوياً. المنظومة السعرية مدروسة، والتجاري تحديداً يحقق هامشاً تنافسياً قوياً. لكن الخطة تفترض معدل بيع شهري (9 قطع) أعلى بـ 80% من المنافس المباشر، مما يجعل النجاح مشروطاً بثلاثة عوامل: حملة تسويقية مكثفة قبل الإطلاق، تجزئة المرحلة 2 الكبيرة، ومرونة سعرية جاهزة في حالة التباطؤ. التوصية بالمضي قدماً مع تطبيق التوصيات السبع الأولى كحد أدنى.
         </div>
         <div class="verdict__score">
-          <div class="verdict__score-num">8.2</div>
+          <div class="verdict__score-num"><span class="num-en">71</span></div>
           <div>
-            <div class="verdict__score-label"><strong>درجة الجاهزية</strong>من 10</div>
-            <div class="verdict__score-label" style="margin-top:8px;">قائم على: متانة النموذج، اتساق الخطة، توازن المراحل، قابلية التنفيذ، تحفظات السوق</div>
+            <div class="verdict__score-label"><strong>من 100</strong></div>
+          </div>
+        </div>
+        
+        <div class="verdict-pillars">
+          <div class="verdict-pillar">
+            <div class="pillar-label">جودة التسعير</div>
+            <div class="pillar-value"><span class="num-en">8.5</span> <span style="font-size:12px;color:var(--pos);margin-right:6px;">ممتاز</span></div>
+          </div>
+          <div class="verdict-pillar">
+            <div class="pillar-label">دعم السوق</div>
+            <div class="pillar-value"><span class="num-en">7.0</span> <span style="font-size:12px;color:var(--pos);margin-right:6px;">جيد</span></div>
+          </div>
+          <div class="verdict-pillar">
+            <div class="pillar-label">واقعية خطة المبيعات</div>
+            <div class="pillar-value"><span class="num-en">6.0</span> <span style="font-size:12px;color:var(--warn);margin-right:6px;">طموحة</span></div>
+          </div>
+          <div class="verdict-pillar">
+            <div class="pillar-label">إدارة المخاطر</div>
+            <div class="pillar-value"><span class="num-en">7.0</span> <span style="font-size:12px;color:var(--pos);margin-right:6px;">جيد</span></div>
+          </div>
+          <div class="verdict-pillar">
+            <div class="pillar-label">جودة التدفق النقدي</div>
+            <div class="pillar-value"><span class="num-en">7.5</span> <span style="font-size:12px;color:var(--pos);margin-right:6px;">جيد</span></div>
           </div>
         </div>
       </div>
 
-      <div class="grid-3 mt-20">
+      <div class="grid-2 mt-20">
         <div class="card">
-          <div class="card__header"><div class="card__title">نقاط القوة</div></div>
-          <div style="font-size:13px;line-height:1.9;color:var(--text);">
-            <div style="display:flex;gap:10px;margin-bottom:10px;"><span style="color:var(--gold);font-weight:900;">✓</span> منهجية تسعير معيارية محكمة</div>
-            <div style="display:flex;gap:10px;margin-bottom:10px;"><span style="color:var(--gold);font-weight:900;">✓</span> توزيع متوازن للقيمة عبر 3 مراحل</div>
-            <div style="display:flex;gap:10px;margin-bottom:10px;"><span style="color:var(--gold);font-weight:900;">✓</span> موقع استراتيجي على طريق الملك عبدالله</div>
-            <div style="display:flex;gap:10px;"><span style="color:var(--gold);font-weight:900;">✓</span> تأجيل التجاري الرئيسي لرفع قيمته</div>
+          <div class="card__header"><div class="card__title">شروط النجاح (Must-Haves)</div></div>
+          <div class="finding">
+            <div class="finding-ic pos"><span class="num-en">1</span></div>
+            <div class="finding-body">
+              <div class="finding-title">قاعدة عملاء مسبقة 200+ مهتم</div>
+              <div class="finding-text">قبل بدء المرحلة 1 بـ 60 يوماً</div>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="finding-ic pos"><span class="num-en">2</span></div>
+            <div class="finding-body">
+              <div class="finding-title">حملة تسويقية بميزانية كافية</div>
+              <div class="finding-text">5-7% من قيمة المبيعات للمرحلة 1</div>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="finding-ic pos"><span class="num-en">3</span></div>
+            <div class="finding-body">
+              <div class="finding-title">تجزئة المرحلة 2</div>
+              <div class="finding-text">3 مراحل فرعية × شهرين</div>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="finding-ic pos"><span class="num-en">4</span></div>
+            <div class="finding-body">
+              <div class="finding-title">شراكات تمويل بنكية</div>
+              <div class="finding-text">عقود نهائية قبل الإطلاق</div>
+            </div>
           </div>
         </div>
         <div class="card">
-          <div class="card__header"><div class="card__title">نقاط المخاطرة</div></div>
-          <div style="font-size:13px;line-height:1.9;color:var(--text);">
-            <div style="display:flex;gap:10px;margin-bottom:10px;"><span style="color:#d93025;font-weight:900;">!</span> سعر سكني فوق المعدل المنفّذ بـ 7.2%</div>
-            <div style="display:flex;gap:10px;margin-bottom:10px;"><span style="color:#d93025;font-weight:900;">!</span> تركيز 18% من القيمة في 11 قطعة تجارية</div>
-            <div style="display:flex;gap:10px;margin-bottom:10px;"><span style="color:#d93025;font-weight:900;">!</span> منافسة مباشرة من آل مانع/نسمات</div>
-            <div style="display:flex;gap:10px;"><span style="color:#d93025;font-weight:900;">!</span> ربط المراحل بنسبة 80% يضخّم أي تأخير</div>
+          <div class="card__header"><div class="card__title">إشارات الخطر (Red Flags)</div></div>
+          <div class="finding">
+            <div class="finding-ic neg">!</div>
+            <div class="finding-body">
+              <div class="finding-title">انخفاض المرحلة 1 عن 8 قطع/شهر</div>
+              <div class="finding-text">يفعّل خطة إنقاذ فورية</div>
+            </div>
           </div>
-        </div>
-        <div class="card">
-          <div class="card__header"><div class="card__title">السيناريو المرتقب</div></div>
-          <div style="font-size:13px;line-height:1.9;color:var(--text);">
-            <div class="stat-row"><span class="stat-row__label">متفائل (95%+)</span><span class="stat-row__value" style="color:#0f9d58;">~83 م ر.س</span></div>
-            <div class="stat-row"><span class="stat-row__label">واقعي (85-90%)</span><span class="stat-row__value" style="color:var(--gold-dark);">~76 م ر.س</span></div>
-            <div class="stat-row"><span class="stat-row__label">محافظ (70-75%)</span><span class="stat-row__value" style="color:#d93025;">~64 م ر.س</span></div>
+          <div class="finding">
+            <div class="finding-ic neg">!</div>
+            <div class="finding-body">
+              <div class="finding-title">دخول مخطط منافس جديد بسعر أقل</div>
+              <div class="finding-text">يستلزم إعادة تموضع سريع</div>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="finding-ic neg">!</div>
+            <div class="finding-body">
+              <div class="finding-title">تأخر البنية التحتية أكثر من شهرين</div>
+              <div class="finding-text">يؤجل البيع في المرحلة 2</div>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="finding-ic neg">!</div>
+            <div class="finding-body">
+              <div class="finding-title">ركود اقتصادي يرفع الفائدة بأكثر من 1%</div>
+              <div class="finding-text">يستدعي مراجعة شاملة للخطة</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="insight insight--dark mt-20">
-        <strong>قرار الإدارة العليا الموصى به:</strong> اعتماد خطة التسعير في صيغتها الحالية مع <strong>تنفيذ التوصيتين 1 و 5</strong> (خصم تكتيكي للمرحلة الأولى + آلية مراجعة شهرية) كشروط لازمة قبل بدء البيع. مراجعة الأداء بعد 60 يوماً من إطلاق المرحلة الأولى وإعادة معايرة الأسعار للمراحل اللاحقة بناءً على بيانات السوق الفعلية.
+      <div class="card" style="border:2px solid var(--gold);background:rgba(189,154,95,0.06);">
+        <div style="text-align:center;padding:1rem 0;">
+          <div style="font-size:13px;color:var(--gold-dark);font-weight:700;letter-spacing:0.05em;margin-bottom:8px;">القرار النهائي</div>
+          <div style="font-size:24px;font-weight:900;color:var(--black);margin-bottom:10px;">المضي قدماً مع تطبيق التوصيات الحرجة الأربع الأولى</div>
+          <div style="font-size:13.5px;color:var(--text-muted);max-width:760px;margin:0 auto;line-height:1.7;">
+            المشروع يحمل أساساً قوياً يستحق الاستثمار، لكن النجاح ليس ضماناً — هو نتيجة تنفيذ منضبط للتوصيات. المراجعة الشهرية للأداء وتفعيل خطة الإنقاذ في الوقت المناسب هما العامل الفاصل بين تحقيق المستهدف الكامل (87M) أو الاكتفاء بـ 75-80% منه في حال غياب الانضباط التنفيذي.
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1097,13 +1613,10 @@
 </div>
 
 <script>
-// ============= DATA (PRESERVED EXACTLY AS ORIGINAL) =============
-const PLOTS = [{"n":1,"a":692.03,"c":"C","bp":1500.0,"ap":1668.19,"tv":1154432.46,"av":88233.57},{"n":2,"a":693.6,"c":"r","bp":1150.0,"ap":1202.33,"tv":833931.42,"av":15952.78},{"n":3,"a":727.74,"c":"r","bp":1150.0,"ap":1231.79,"tv":896425.58,"av":37660.54},{"n":4,"a":829.47,"c":"C","bp":1500.0,"ap":1629.75,"tv":1351823.84,"av":74652.03},{"n":5,"a":575.68,"c":"r","bp":1150.0,"ap":1243.58,"tv":715902.37,"av":36411.63},{"n":6,"a":585.65,"c":"r","bp":1150.0,"ap":1261.26,"tv":738664.69,"av":47145.23},{"n":7,"a":787.0,"c":"C","bp":1500.0,"ap":1445.25,"tv":1137405.97,"av":-70829.64},{"n":8,"a":600.01,"c":"r","bp":1150.0,"ap":1237.69,"tv":742627.35,"av":34500.69},{"n":9,"a":785.07,"c":"C","bp":1500.0,"ap":1445.25,"tv":1134618.08,"av":-70656.03},{"n":10,"a":600.01,"c":"r","bp":1150.0,"ap":1237.69,"tv":742627.35,"av":34500.69},{"n":11,"a":783.51,"c":"C","bp":1500.0,"ap":1445.25,"tv":1132372.16,"av":-70516.17},{"n":12,"a":600.02,"c":"r","bp":1150.0,"ap":1237.69,"tv":742643.44,"av":34501.44},{"n":13,"a":782.89,"c":"C","bp":1500.0,"ap":1445.25,"tv":1131477.55,"av":-70460.46},{"n":14,"a":600.04,"c":"r","bp":1150.0,"ap":1237.69,"tv":742658.29,"av":34502.13},{"n":15,"a":782.85,"c":"C","bp":1500.0,"ap":1445.25,"tv":1131406.74,"av":-70456.05},{"n":16,"a":600.04,"c":"r","bp":1150.0,"ap":1237.69,"tv":742658.29,"av":34502.13},{"n":17,"a":782.89,"c":"C","bp":1500.0,"ap":1445.25,"tv":1131476.11,"av":-70460.37},{"n":18,"a":600.04,"c":"r","bp":1150.0,"ap":1237.69,"tv":742658.29,"av":34502.13},{"n":19,"a":782.89,"c":"C","bp":1500.0,"ap":1445.25,"tv":1131476.11,"av":-70460.37},{"n":20,"a":600.04,"c":"r","bp":1150.0,"ap":1237.69,"tv":742658.29,"av":34502.13},{"n":21,"a":782.89,"c":"C","bp":1500.0,"ap":1445.25,"tv":1131476.11,"av":-70460.37},{"n":22,"a":988.59,"c":"C","bp":1500.0,"ap":1360.69,"tv":1345167.5,"av":-170532.47},{"n":23,"a":761.09,"c":"r","bp":1150.0,"ap":1208.22,"tv":919564.42,"av":21881.37},{"n":24,"a":506.64,"c":"r","bp":1150.0,"ap":1237.69,"tv":627066.95,"av":29132.03},{"n":25,"a":522.88,"c":"r","bp":1150.0,"ap":1178.75,"tv":616344.8,"av":-0.0},{"n":26,"a":620.74,"c":"r","bp":1150.0,"ap":1243.58,"tv":771945.6,"av":39262.06},{"n":27,"a":632.16,"c":"r","bp":1150.0,"ap":1237.69,"tv":782412.82,"av":36349.03},{"n":28,"a":611.64,"c":"r","bp":1150.0,"ap":1243.58,"tv":760629.01,"av":38686.48},{"n":29,"a":619.39,"c":"r","bp":1150.0,"ap":1237.69,"tv":766608.79,"av":35614.81},{"n":30,"a":619.62,"c":"r","bp":1150.0,"ap":1220.01,"tv":755945.15,"av":24939.87},{"n":31,"a":624.78,"c":"r","bp":1150.0,"ap":1214.11,"tv":758554.42,"av":21554.94},{"n":32,"a":620.01,"c":"r","bp":1150.0,"ap":1220.01,"tv":756412.42,"av":24955.28},{"n":33,"a":624.07,"c":"r","bp":1150.0,"ap":1214.11,"tv":757694.83,"av":21530.52},{"n":34,"a":620.01,"c":"r","bp":1150.0,"ap":1220.01,"tv":756412.42,"av":24955.28},{"n":35,"a":623.34,"c":"r","bp":1150.0,"ap":1214.11,"tv":756807.31,"av":21505.3},{"n":36,"a":620.01,"c":"r","bp":1150.0,"ap":1220.01,"tv":756412.42,"av":24955.28},{"n":37,"a":622.66,"c":"r","bp":1150.0,"ap":1214.11,"tv":755982.93,"av":21481.87},{"n":38,"a":599.53,"c":"r","bp":1150.0,"ap":1225.9,"tv":734965.05,"av":27578.43},{"n":39,"a":433.01,"c":"r","bp":1150.0,"ap":1296.62,"tv":561456.78,"av":49796.61},{"n":40,"a":616.88,"c":"r","bp":1150.0,"ap":1278.94,"tv":788952.26,"av":60299.82},{"n":41,"a":588.03,"c":"r","bp":1150.0,"ap":1220.01,"tv":717395.4,"av":23668.05},{"n":42,"a":514.23,"c":"r","bp":1150.0,"ap":1278.94,"tv":657675.08,"av":50266.28},{"n":43,"a":603.4,"c":"r","bp":1150.0,"ap":1208.22,"tv":729034.36,"av":17347.63},{"n":44,"a":721.21,"c":"r","bp":1150.0,"ap":1137.49,"tv":820366.18,"av":-29028.5},{"n":45,"a":518.65,"c":"r","bp":1150.0,"ap":1208.22,"tv":626641.45,"av":14911.16},{"n":46,"a":506.94,"c":"r","bp":1150.0,"ap":1166.96,"tv":591582.3,"av":-5829.83},{"n":47,"a":747.41,"c":"r","bp":1150.0,"ap":1078.56,"tv":806129.12,"av":-73059.82},{"n":48,"a":648.59,"c":"r","bp":1150.0,"ap":1149.28,"tv":745415.77,"av":-18647.05},{"n":49,"a":783.81,"c":"r","bp":1150.0,"ap":1078.56,"tv":845385.33,"av":-76617.62},{"n":50,"a":621.76,"c":"r","bp":1150.0,"ap":1161.07,"tv":721909.59,"av":-10725.41},{"n":51,"a":1062.01,"c":"r","bp":1150.0,"ap":1137.49,"tv":1208034.29,"av":-42746.06},{"n":52,"a":618.01,"c":"r","bp":1150.0,"ap":1220.01,"tv":753978.5,"av":24874.98},{"n":53,"a":610.58,"c":"r","bp":1150.0,"ap":1190.54,"tv":726916.01,"av":7021.65},{"n":54,"a":518.59,"c":"r","bp":1150.0,"ap":1243.58,"tv":644908.8,"av":32800.82},{"n":55,"a":576.01,"c":"r","bp":1150.0,"ap":1225.9,"tv":706135.56,"av":26496.64},{"n":56,"a":525.63,"c":"r","bp":1150.0,"ap":1255.37,"tv":659858.22,"av":39290.77},{"n":57,"a":452.85,"c":"r","bp":1150.0,"ap":1261.26,"tv":571162.72,"av":36454.43},{"n":58,"a":547.51,"c":"r","bp":1150.0,"ap":1161.07,"tv":635697.91,"av":-9444.56},{"n":59,"a":459.27,"c":"r","bp":1150.0,"ap":1261.26,"tv":579265.07,"av":36971.56},{"n":60,"a":527.96,"c":"r","bp":1150.0,"ap":1231.79,"tv":650334.13,"av":27321.77},{"n":61,"a":527.96,"c":"r","bp":1150.0,"ap":1202.33,"tv":634775.9,"av":12143.01},{"n":62,"a":525.0,"c":"r","bp":1150.0,"ap":1231.79,"tv":646691.72,"av":27168.75},{"n":63,"a":525.0,"c":"r","bp":1150.0,"ap":1202.33,"tv":631220.62,"av":12075.0},{"n":64,"a":500.0,"c":"r","bp":1150.0,"ap":1261.26,"tv":630631.25,"av":40250.0},{"n":65,"a":500.0,"c":"r","bp":1150.0,"ap":1231.79,"tv":615896.88,"av":25875.0},{"n":66,"a":500.0,"c":"r","bp":1150.0,"ap":1284.84,"tv":642418.75,"av":51750.0},{"n":67,"a":500.0,"c":"r","bp":1150.0,"ap":1255.37,"tv":627684.38,"av":37375.0},{"n":68,"a":600.0,"c":"r","bp":1150.0,"ap":1220.01,"tv":732003.75,"av":24150.0},{"n":69,"a":600.0,"c":"r","bp":1150.0,"ap":1225.9,"tv":735540.0,"av":27600.0},{"n":70,"a":600.0,"c":"r","bp":1150.0,"ap":1196.43,"tv":717858.75,"av":10350.0},{"n":71,"a":600.0,"c":"r","bp":1150.0,"ap":1202.32,"tv":721395.0,"av":13800.0},{"n":72,"a":600.0,"c":"r","bp":1150.0,"ap":1196.43,"tv":717858.75,"av":10350.0},{"n":73,"a":600.0,"c":"r","bp":1150.0,"ap":1202.32,"tv":721395.0,"av":13800.0},{"n":74,"a":599.79,"c":"r","bp":1150.0,"ap":1255.37,"tv":752963.9,"av":44834.68},{"n":75,"a":600.0,"c":"r","bp":1150.0,"ap":1237.69,"tv":742612.5,"av":34500.0},{"n":76,"a":611.27,"c":"C","bp":1250.0,"ap":1390.16,"tv":849755.25,"av":64947.01},{"n":77,"a":638.14,"c":"C","bp":1250.0,"ap":1390.16,"tv":887108.75,"av":67801.95},{"n":78,"a":740.06,"c":"r","bp":1150.0,"ap":1172.86,"tv":867981.65,"av":-4255.33},{"n":79,"a":755.31,"c":"r","bp":1150.0,"ap":1208.22,"tv":912579.7,"av":21715.16},{"n":80,"a":727.85,"c":"C","bp":1250.0,"ap":1358.12,"tv":988512.64,"av":54588.82},{"n":81,"a":648.53,"c":"C","bp":1250.0,"ap":1326.09,"tv":860008.93,"av":28373.1},{"n":82,"a":650.93,"c":"r","bp":1150.0,"ap":1202.32,"tv":782624.6,"av":14971.3},{"n":83,"a":648.84,"c":"C","bp":1250.0,"ap":1300.47,"tv":843790.94,"av":12165.67},{"n":84,"a":650.46,"c":"r","bp":1150.0,"ap":1178.75,"tv":766726.19,"av":0.0},{"n":85,"a":649.09,"c":"C","bp":1250.0,"ap":1326.09,"tv":860751.54,"av":28397.6},{"n":86,"a":649.99,"c":"r","bp":1150.0,"ap":1202.33,"tv":781494.42,"av":14949.68},{"n":87,"a":711.71,"c":"C","bp":1250.0,"ap":1197.97,"tv":852609.93,"av":-57826.68},{"n":88,"a":769.68,"c":"C","bp":1250.0,"ap":1313.28,"tv":1010810.25,"av":24052.59},{"n":89,"a":899.44,"c":"r","bp":1150.0,"ap":1231.79,"tv":1107929.5,"av":46546.23},{"n":90,"a":605.63,"c":"C","bp":1250.0,"ap":1332.5,"tv":807000.64,"av":30281.45},{"n":91,"a":503.99,"c":"r","bp":1150.0,"ap":1314.31,"tv":662401.15,"av":66653.07},{"n":92,"a":552.8,"c":"C","bp":1250.0,"ap":1281.25,"tv":708272.44,"av":0.0},{"n":93,"a":527.65,"c":"r","bp":1150.0,"ap":1243.58,"tv":656175.65,"av":33373.86},{"n":94,"a":720.91,"c":"C","bp":1250.0,"ap":1249.22,"tv":900579.29,"av":-22528.56},{"n":95,"a":641.85,"c":"r","bp":1150.0,"ap":1243.58,"tv":798191.38,"av":40596.95},{"n":96,"a":756.38,"c":"C","bp":1250.0,"ap":1249.22,"tv":944881.58,"av":-23636.81},{"n":97,"a":724.85,"c":"r","bp":1150.0,"ap":1214.11,"tv":880043.38,"av":25007.15},{"n":98,"a":800.46,"c":"C","bp":1250.0,"ap":1249.22,"tv":999949.64,"av":-25014.38},{"n":99,"a":809.56,"c":"r","bp":1150.0,"ap":1214.11,"tv":982901.77,"av":27929.96},{"n":100,"a":729.66,"c":"C","bp":1250.0,"ap":1249.22,"tv":911503.7,"av":-22801.84},{"n":101,"a":824.6,"c":"r","bp":1150.0,"ap":1214.11,"tv":1001160.81,"av":28448.8},{"n":102,"a":774.48,"c":"r","bp":1150.0,"ap":1237.69,"tv":958567.93,"av":44532.77},{"n":103,"a":740.82,"c":"r","bp":1150.0,"ap":1172.86,"tv":868870.68,"av":-4259.69},{"n":104,"a":709.53,"c":"r","bp":1150.0,"ap":1172.86,"tv":832176.7,"av":-4079.8},{"n":105,"a":674.21,"c":"C","bp":1250.0,"ap":1332.5,"tv":898379.49,"av":33710.3},{"n":106,"a":551.68,"c":"r","bp":1150.0,"ap":1066.77,"tv":588510.72,"av":-60270.6},{"n":107,"a":621.57,"c":"r","bp":1150.0,"ap":1137.49,"tv":707026.3,"av":-25017.99},{"n":108,"a":802.05,"c":"r","bp":1150.0,"ap":1019.62,"tv":817789.3,"av":-124518.88}];
-
 // ============= NAVIGATION =============
 const navItems = document.querySelectorAll('.nav__item');
 const pages = document.querySelectorAll('.page');
-const initialized = new Set(['summary']);
+const initialized = new Set(['executive']);
 
 navItems.forEach(item => {
   item.addEventListener('click', () => {
@@ -1112,6 +1625,7 @@ navItems.forEach(item => {
     pages.forEach(p => p.classList.remove('active'));
     item.classList.add('active');
     document.getElementById('page-' + target).classList.add('active');
+    
     if (!initialized.has(target)) {
       initPage(target);
       initialized.add(target);
@@ -1120,7 +1634,7 @@ navItems.forEach(item => {
   });
 });
 
-// ============= CHART CONFIG =============
+// ============= CHART CONFIG (From File 2 Theme) =============
 const COLORS = {
   gold:'#bd9a5f',
   goldDark:'#C89638',
@@ -1128,7 +1642,10 @@ const COLORS = {
   grey:'#EFEFEF',
   border:'#d4d4d4',
   text:'#1a1a1a',
-  textMuted:'#6b6b6b'
+  textMuted:'#6b6b6b',
+  pos: '#0f9d58',
+  warn: '#B6781E',
+  neg: '#d93025'
 };
 
 const arabicFont = "'Tajawal', 'IBM Plex Arabic', sans-serif";
@@ -1141,7 +1658,7 @@ Chart.defaults.plugins.legend.labels.padding = 15;
 Chart.defaults.plugins.legend.labels.usePointStyle = true;
 Chart.defaults.plugins.legend.labels.boxWidth = 8;
 Chart.defaults.plugins.legend.labels.boxHeight = 8;
-Chart.defaults.plugins.tooltip.backgroundColor = '#2c313c'; // More refined tooltip background
+Chart.defaults.plugins.tooltip.backgroundColor = '#2c313c';
 Chart.defaults.plugins.tooltip.titleColor = COLORS.gold;
 Chart.defaults.plugins.tooltip.bodyColor = '#fff';
 Chart.defaults.plugins.tooltip.padding = 10;
@@ -1149,302 +1666,273 @@ Chart.defaults.plugins.tooltip.cornerRadius = 6;
 Chart.defaults.plugins.tooltip.titleFont = {family:arabicFont, weight:'bold', size:12};
 Chart.defaults.plugins.tooltip.bodyFont = {family:arabicFont, size:12};
 
-function fmt(n){return n.toLocaleString('en-US');}
-function fmtM(n){return (n/1000000).toFixed(1)+'م';}
-
-// ============= CHART INIT FUNCTIONS =============
-function initSummary(){
-  // Donut: usage mix by VALUE
-  const resTotal = PLOTS.filter(p=>p.c==='r').reduce((s,p)=>s+p.tv,0);
-  const comTotal = PLOTS.filter(p=>p.c==='C').reduce((s,p)=>s+p.tv,0);
-  // Split commercial into main road (BP=1500) and internal (BP=1250)
-  const comMain = PLOTS.filter(p=>p.c==='C' && p.bp===1500).reduce((s,p)=>s+p.tv,0);
-  const comInt = PLOTS.filter(p=>p.c==='C' && p.bp===1250).reduce((s,p)=>s+p.tv,0);
-  new Chart(document.getElementById('chartUsageMix'),{
-    type:'doughnut',
-    data:{
-      labels:['سكني','تجاري رئيسي (الواجهة)','تجاري داخلي'],
-      datasets:[{
-        data:[resTotal, comMain, comInt],
-        backgroundColor:[COLORS.gold, COLORS.black, COLORS.goldDark],
-        borderColor:'#fff',
-        borderWidth:3
+// ============= CHART INIT FUNCTIONS (Data from File 1) =============
+function initPricing() {
+  new Chart(document.getElementById('priceDistRes'), {
+    type: 'bar',
+    data: {
+      labels: ['1020-1080','1080-1140','1140-1200','1200-1260','1260-1320'],
+      datasets: [{
+        label: 'عدد القطع',
+        data: [4, 7, 12, 48, 11],
+        backgroundColor: COLORS.gold,
+        borderRadius: 6
       }]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      cutout:'62%',
-      plugins:{
-        legend:{position:'bottom'},
-        tooltip:{callbacks:{label:(c)=>{const v=c.parsed;const tot=c.dataset.data.reduce((a,b)=>a+b,0);return ` ${c.label}: ${fmtM(v)} ر.س (${(v/tot*100).toFixed(1)}%)`;}}}
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false } },
+        y: { beginAtZero: true, grid: { color: '#F0EDE5' } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('priceDistCom'), {
+    type: 'bar',
+    data: {
+      labels: ['1198-1294','1294-1390','1390-1486','1486-1582','1582-1668'],
+      datasets: [{
+        label: 'عدد القطع',
+        data: [3, 12, 8, 2, 1],
+        backgroundColor: COLORS.black,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false } },
+        y: { beginAtZero: true, grid: { color: '#F0EDE5' } }
+      }
+    }
+  });
+
+  const resData = [{x:433,y:1297},{x:452,y:1290},{x:478,y:1272},{x:504,y:1314},{x:506,y:1238},{x:522,y:1179},{x:551,y:1067},{x:575,y:1244},{x:585,y:1261},{x:599,y:1226},{x:600,y:1238},{x:611,y:1244},{x:619,y:1238},{x:620,y:1220},{x:622,y:1214},{x:623,y:1214},{x:624,y:1214},{x:632,y:1238},{x:692,y:1244},{x:721,y:1137},{x:727,y:1232},{x:747,y:1079},{x:761,y:1208},{x:783,y:1079},{x:802,y:1020},{x:1062,y:1137}];
+  const comData = [{x:692,y:1668},{x:783,y:1445},{x:785,y:1445},{x:786,y:1445},{x:829,y:1630},{x:782,y:1445},{x:782,y:1445},{x:988,y:1361}];
+  
+  new Chart(document.getElementById('priceVsArea'), {
+    type: 'scatter',
+    data: {
+      datasets: [
+        { label: 'سكني', data: resData, backgroundColor: COLORS.gold+'cc', borderColor: COLORS.gold, pointRadius: 5, pointHoverRadius: 8 },
+        { label: 'تجاري', data: comData, backgroundColor: COLORS.black+'cc', borderColor: COLORS.black, pointRadius: 6, pointHoverRadius: 9 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { title: { display: true, text: 'مساحة القطعة (م²)', font:{weight:'bold'} }, grid: { color: '#F0EDE5' } },
+        y: { title: { display: true, text: 'سعر المتر (ريال)', font:{weight:'bold'} }, grid: { color: '#F0EDE5' } }
       }
     }
   });
 }
 
-function initKpis(){
-  // Histogram for residential
-  const res = PLOTS.filter(p=>p.c==='r').map(p=>p.ap);
-  const com = PLOTS.filter(p=>p.c==='C').map(p=>p.ap);
-  
-  function makeHist(arr, bins, ctxId, color){
-    const min = Math.min(...arr), max = Math.max(...arr);
-    const step = (max - min) / bins;
-    const counts = new Array(bins).fill(0);
-    const labels = [];
-    for (let i=0; i<bins; i++){
-      const lo = min + i*step, hi = min + (i+1)*step;
-      labels.push(`${Math.round(lo)}-${Math.round(hi)}`);
+function initMarket() {
+  new Chart(document.getElementById('marketCompare'), {
+    type: 'bar',
+    data: {
+      labels: ['الفيروز','صفقات العقيق','نسمات العروبة','رابية الغد (سكني)','آل مانع','تجاري الواجهة'],
+      datasets: [{
+        label: 'سعر المتر (ريال)',
+        data: [800, 1132, 1200, 1209, 1220, 1500],
+        backgroundColor: [COLORS.grey, COLORS.grey, COLORS.grey, COLORS.gold, COLORS.grey, COLORS.black],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { beginAtZero: true, grid: { color: '#F0EDE5' } },
+        y: { grid: { display: false } }
+      }
     }
-    arr.forEach(v=>{
-      let idx = Math.floor((v-min)/step);
-      if (idx >= bins) idx = bins-1;
-      counts[idx]++;
-    });
-    new Chart(document.getElementById(ctxId),{
-      type:'bar',
-      data:{labels,datasets:[{
-        label:'عدد القطع',
-        data:counts,
-        backgroundColor:color,
-        borderRadius:6,
-        borderSkipped:false
-      }]},
-      options:{
-        responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>` ${c.parsed.y} قطعة في نطاق ${c.label} ر.س/م²`}}},
-        scales:{
-          x:{grid:{display:false},ticks:{font:{size:10}}},
-          y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{stepSize:5}}
+  });
+
+  new Chart(document.getElementById('marketTrend'), {
+    type: 'line',
+    data: {
+      labels: ['Q1 2025','Q2 2025','Q3 2025','Q4 2025'],
+      datasets: [
+        {
+          label: 'متوسط سعر الصفقات',
+          data: [1077, 1033, 1200, 1265],
+          borderColor: COLORS.gold,
+          backgroundColor: COLORS.gold+'22',
+          fill: true, tension: 0.3,
+          pointBackgroundColor: COLORS.goldDark,
+          pointBorderColor: '#fff', pointBorderWidth: 2, pointRadius: 6
+        },
+        {
+          label: 'سعرنا المستهدف',
+          data: [1209, 1209, 1209, 1209],
+          borderColor: COLORS.black,
+          borderDash: [6, 4], fill: false, pointRadius: 0
         }
-      }
-    });
-  }
-  
-  makeHist(res, 8, 'chartResHist', COLORS.gold);
-  makeHist(com, 6, 'chartComHist', COLORS.black);
-}
-
-function initPricing(){
-  // Scatter: area vs price
-  const resData = PLOTS.filter(p=>p.c==='r').map(p=>({x:p.a, y:p.ap, n:p.n}));
-  const comData = PLOTS.filter(p=>p.c==='C').map(p=>({x:p.a, y:p.ap, n:p.n}));
-  
-  new Chart(document.getElementById('chartScatter'),{
-    type:'scatter',
-    data:{
-      datasets:[
-        {label:'سكني',data:resData,backgroundColor:COLORS.gold+'cc',borderColor:COLORS.gold,pointRadius:5,pointHoverRadius:8},
-        {label:'تجاري',data:comData,backgroundColor:COLORS.black+'cc',borderColor:COLORS.black,pointRadius:5,pointHoverRadius:8}
       ]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{position:'top'},
-        tooltip:{callbacks:{label:(c)=>` قطعة ${c.raw.n}: ${c.raw.x.toFixed(0)} م² · ${c.raw.y.toFixed(0)} ر.س/م²`}}
-      },
-      scales:{
-        x:{title:{display:true,text:'المساحة (م²)',font:{family:arabicFont,size:12,weight:'bold'}},grid:{color:'#f0f0f0'}},
-        y:{title:{display:true,text:'سعر المتر (ر.س)',font:{family:arabicFont,size:12,weight:'bold'}},grid:{color:'#f0f0f0'}}
-      }
-    }
-  });
-
-  // Bar: features added per plot - aggregate into bins
-  const featuresByPlot = PLOTS.map(p=>({n:p.n, av:p.av}));
-  // Sort by added value
-  const sorted = [...featuresByPlot].sort((a,b)=>b.av-a.av);
-  const top10 = sorted.slice(0,10);
-  const bottom10 = sorted.slice(-10).reverse();
-  
-  new Chart(document.getElementById('chartFeatures'),{
-    type:'bar',
-    data:{
-      labels:[...top10.map(p=>'قطعة '+p.n), ...bottom10.map(p=>'قطعة '+p.n)],
-      datasets:[{
-        label:'قيمة المزايا (ر.س)',
-        data:[...top10.map(p=>p.av), ...bottom10.map(p=>p.av)],
-        backgroundColor:(ctx)=>ctx.parsed.x >= 0 ? COLORS.gold : COLORS.black,
-        borderRadius:4
-      }]
-    },
-    options:{
-      indexAxis:'y',
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{display:false},
-        title:{display:true,text:'أعلى وأدنى 10 قطع من حيث المزايا',font:{family:arabicFont,size:12}},
-        tooltip:{callbacks:{label:(c)=>` ${c.parsed.x>=0?'+':''}${fmt(Math.round(c.parsed.x))} ر.س`}}
-      },
-      scales:{
-        x:{grid:{color:'#f0f0f0'},ticks:{callback:(v)=>fmt(v/1000)+'ك'}},
-        y:{grid:{display:false},ticks:{font:{size:10}}}
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { grid: { color: '#F0EDE5' } },
+        x: { grid: { display: false } }
       }
     }
   });
 }
 
-function initMarket(){
-  // Bar: comparison
-  new Chart(document.getElementById('chartMarketComp'),{
-    type:'bar',
-    data:{
-      labels:['الفيروز','صفقات العقيق','نسمات','آل مانع','رابية الغد'],
-      datasets:[{
-        label:'متوسط سعر المتر السكني (ر.س)',
-        data:[800, 1132, 1200, 1220, 1213],
-        backgroundColor:[COLORS.grey, COLORS.grey, COLORS.grey, COLORS.grey, COLORS.gold],
-        borderColor:[COLORS.border, COLORS.border, COLORS.border, COLORS.border, COLORS.goldDark],
-        borderWidth:2,
-        borderRadius:6
+function initPhases() {
+  new Chart(document.getElementById('phasePlots'), {
+    type: 'doughnut',
+    data: {
+      labels: ['المرحلة 1 — 35 قطعة','المرحلة 2 — 50 قطعة','المرحلة 3 — 23 قطعة'],
+      datasets: [{
+        data: [35, 50, 23],
+        backgroundColor: [COLORS.grey, COLORS.goldDark, COLORS.black],
+        borderColor: '#FFFFFF', borderWidth: 3
       }]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{display:false},
-        tooltip:{callbacks:{label:(c)=>` ${fmt(c.parsed.y)} ر.س / م²`}}
-      },
-      scales:{
-        x:{grid:{display:false}},
-        y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{callback:(v)=>fmt(v)}}
-      }
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '55%',
+      plugins: { tooltip: { callbacks: { label: (c) => ` ${c.label}: ${c.parsed} قطعة` } } }
     }
   });
 
-  // Line: trend in 2025
-  new Chart(document.getElementById('chartTrend'),{
-    type:'line',
-    data:{
-      labels:['الربع الأول','الربع الثاني','الربع الثالث','الربع الرابع'],
-      datasets:[{
-        label:'متوسط سعر المتر',
-        data:[1077, 1033, 1200, 1265],
-        borderColor:COLORS.gold,
-        backgroundColor:COLORS.gold+'22',
-        borderWidth:3,
-        fill:true,
-        tension:0.3,
-        pointBackgroundColor:COLORS.goldDark,
-        pointBorderColor:'#fff',
-        pointBorderWidth:2,
-        pointRadius:6,
-        pointHoverRadius:8
+  new Chart(document.getElementById('phaseValue'), {
+    type: 'doughnut',
+    data: {
+      labels: ['المرحلة 1 — 24.6M','المرحلة 2 — 38.2M','المرحلة 3 — 24.2M'],
+      datasets: [{
+        data: [24.6, 38.2, 24.2],
+        backgroundColor: [COLORS.grey, COLORS.goldDark, COLORS.black],
+        borderColor: '#FFFFFF', borderWidth: 3
       }]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{display:false},
-        tooltip:{callbacks:{label:(c)=>` ${fmt(c.parsed.y)} ر.س / م²`}}
-      },
-      scales:{
-        x:{grid:{display:false}},
-        y:{grid:{color:'#f0f0f0'},ticks:{callback:(v)=>fmt(v)}}
-      }
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '55%',
+      plugins: { tooltip: { callbacks: { label: (c) => ` ${c.label}: ${c.parsed.toFixed(1)} مليون` } } }
     }
   });
 }
 
-function initPhases(){
-  // Bar comparison
-  new Chart(document.getElementById('chartPhases'),{
-    type:'bar',
-    data:{
-      labels:['المرحلة الأولى','المرحلة الثانية','المرحلة الثالثة'],
-      datasets:[
-        {label:'سكني',data:[19.67, 30.51, 8.68],backgroundColor:COLORS.gold,borderRadius:6,stack:'s'},
-        {label:'تجاري داخلي',data:[4.97, 7.64, 0],backgroundColor:COLORS.goldDark,borderRadius:6,stack:'s'},
-        {label:'تجاري رئيسي',data:[0, 0, 15.48],backgroundColor:COLORS.black,borderRadius:6,stack:'s'}
+function initVelocity() {
+  new Chart(document.getElementById('velocityChart'), {
+    type: 'bar',
+    data: {
+      labels: ['المرحلة 1','المرحلة 2','المرحلة 3','المعدل الإجمالي'],
+      datasets: [
+        { label: 'المخطط (قطعة/شهر)', data: [11.7, 8.3, 7.7, 9.0], backgroundColor: COLORS.goldDark, borderRadius: 4 },
+        { label: 'المعيار السوقي', data: [5, 5, 5, 5], backgroundColor: COLORS.grey, borderRadius: 4 }
       ]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{position:'bottom'},
-        tooltip:{callbacks:{label:(c)=>` ${c.dataset.label}: ${c.parsed.y} م ر.س`}}
-      },
-      scales:{
-        x:{stacked:true,grid:{display:false}},
-        y:{stacked:true,beginAtZero:true,grid:{color:'#f0f0f0'},title:{display:true,text:'مليون ر.س'}}
-      }
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: { y: { beginAtZero: true, grid: { color: '#F0EDE5' } }, x: { grid: { display: false } } }
     }
   });
 
-  // Cumulative
-  new Chart(document.getElementById('chartCumulative'),{
-    type:'line',
-    data:{
-      labels:['البداية','الشهر 3','الشهر 6','الشهر 9','الشهر 12'],
-      datasets:[{
-        label:'الإيراد التراكمي (م ر.س)',
-        data:[0, 24.6, 43.7, 62.8, 87.0],
-        borderColor:COLORS.gold,
-        backgroundColor:COLORS.gold+'22',
-        borderWidth:3,
-        fill:true,
-        tension:0.3,
-        pointBackgroundColor:COLORS.goldDark,
-        pointBorderColor:'#fff',
-        pointBorderWidth:2,
-        pointRadius:6
+  new Chart(document.getElementById('velocityBenchmark'), {
+    type: 'bar',
+    data: {
+      labels: ['الفيروز','نسمات العروبة','آل مانع','رابية الغد (المخطط)'],
+      datasets: [{
+        label: 'قطعة/شهر',
+        data: [4, 6, 5, 9],
+        backgroundColor: [COLORS.grey, COLORS.grey, COLORS.grey, COLORS.goldDark],
+        borderRadius: 4
       }]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{display:false},
-        tooltip:{callbacks:{label:(c)=>` ${c.parsed.y} م ر.س`}}
-      },
-      scales:{
-        x:{grid:{display:false}},
-        y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{callback:(v)=>v+'م'}}
-      }
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true, grid: { color: '#F0EDE5' } }, y: { grid: { display: false } } }
     }
   });
 }
 
-function initOutliers(){
-  // Scatter highlighting outliers
-  const outlierIds = new Set([1,4,87,39,44,47,49,51,91,106,107,108]);
-  const normal = PLOTS.filter(p=>!outlierIds.has(p.n)).map(p=>({x:p.a, y:p.ap, n:p.n}));
-  const outliers = PLOTS.filter(p=>outlierIds.has(p.n)).map(p=>({x:p.a, y:p.ap, n:p.n}));
-
-  new Chart(document.getElementById('chartOutliers'),{
-    type:'scatter',
-    data:{
-      datasets:[
-        {label:'قطع طبيعية',data:normal,backgroundColor:COLORS.grey,borderColor:COLORS.border,pointRadius:4},
-        {label:'قطع شاذة',data:outliers,backgroundColor:COLORS.gold,borderColor:COLORS.goldDark,pointRadius:8,pointHoverRadius:11,borderWidth:2}
+function initCashflow() {
+  new Chart(document.getElementById('cashflowChart'), {
+    type: 'bar',
+    data: {
+      labels: ['شهر 1','شهر 2','شهر 3','شهر 4','شهر 5','شهر 6','شهر 7','شهر 8','شهر 9','شهر 10','شهر 11','شهر 12'],
+      datasets: [
+        {
+          type: 'bar', label: 'إيرادات الشهر (مليون ريال)',
+          data: [7.5, 8.5, 8.6, 6.4, 6.3, 6.4, 6.4, 6.3, 6.4, 8.0, 8.1, 8.2],
+          backgroundColor: COLORS.goldDark, borderRadius: 4, yAxisID: 'y'
+        },
+        {
+          type: 'line', label: 'التراكمي (مليون)',
+          data: [7.5, 16.0, 24.6, 31.0, 37.3, 43.7, 50.1, 56.4, 62.8, 70.8, 78.9, 87.0],
+          borderColor: COLORS.black, backgroundColor: COLORS.black+'11',
+          fill: true, tension: 0.3, pointBackgroundColor: COLORS.black, pointRadius: 4, yAxisID: 'y1'
+        }
       ]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{position:'top'},
-        tooltip:{callbacks:{label:(c)=>` قطعة ${c.raw.n}: ${c.raw.x.toFixed(0)} م² · ${c.raw.y.toFixed(0)} ر.س/م²`}}
-      },
-      scales:{
-        x:{title:{display:true,text:'المساحة (م²)'},grid:{color:'#f0f0f0'}},
-        y:{title:{display:true,text:'سعر المتر (ر.س)'},grid:{color:'#f0f0f0'}}
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, position: 'right', grid: { color: '#F0EDE5' } },
+        y1: { beginAtZero: true, position: 'left', grid: { display: false } },
+        x: { grid: { display: false } }
       }
     }
   });
 }
 
-function initPage(name){
-  if (name==='summary') initSummary();
-  else if (name==='kpis') initKpis();
-  else if (name==='pricing') initPricing();
-  else if (name==='market') initMarket();
-  else if (name==='phases') initPhases();
-  else if (name==='outliers') initOutliers();
+function initScenarios() {
+  new Chart(document.getElementById('scenariosChart'), {
+    type: 'radar',
+    data: {
+      labels: ['سرعة البيع','الإيراد','المدة','المرونة','المخاطرة (مقلوبة)','الجاذبية السوقية'],
+      datasets: [
+        { label: 'محافظ', data: [55, 95, 65, 90, 70, 60], backgroundColor: COLORS.warn+'22', borderColor: COLORS.warn, borderWidth: 2, pointBackgroundColor: COLORS.warn },
+        { label: 'متوقع', data: [80, 100, 100, 75, 75, 80], backgroundColor: COLORS.goldDark+'22', borderColor: COLORS.goldDark, borderWidth: 2, pointBackgroundColor: COLORS.goldDark },
+        { label: 'هجومي', data: [100, 105, 130, 50, 50, 95], backgroundColor: COLORS.pos+'22', borderColor: COLORS.pos, borderWidth: 2, pointBackgroundColor: COLORS.pos }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: { r: { beginAtZero: true, max: 130, ticks: { display: false } } }
+    }
+  });
+}
+
+function initPage(name) {
+  if (name === 'pricing') initPricing();
+  else if (name === 'market') initMarket();
+  else if (name === 'phases') initPhases();
+  else if (name === 'velocity') initVelocity();
+  else if (name === 'cashflow') initCashflow();
+  else if (name === 'scenarios') initScenarios();
+}
+
+// ================== KPI Counters ==================
+function animateCounters() {
+  document.querySelectorAll('[data-counter]').forEach(el => {
+    const target = parseFloat(el.dataset.counter);
+    const duration = 1500;
+    const start = performance.now();
+    function tick(t) {
+      const p = Math.min(1, (t - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const v = (target * eased);
+      el.textContent = (target % 1 === 0 ? Math.round(v) : v.toFixed(1));
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
 }
 
 // Init the first page on load
 document.addEventListener('DOMContentLoaded', () => {
-    initPage('summary');
+    initPage('executive');
+    animateCounters();
 });
 </script>
 </body>
